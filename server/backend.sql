@@ -1,28 +1,35 @@
 
 CREATE SCHEMA DOUBUTSU;
 
--- user が SQL の keyword らしいので避けた
+-- Rails っぽい命名規則を採用
+-- 整数値 primary key -- id
+-- foreign key 参照 -- xxx_id
+-- 時刻 -- xxx_at -- e.g. updated_at, created_at
+-- 日付 -- xxx_on
+
+-- foreign key 制約を利用するのは backup を考えたときの問題が無いと確認できてからにする
 
 -- * ユーザー
-CREATE TABLE DOUBUTSU.gameuser
-  ( seq BIGINT NOT NULL
+CREATE TABLE DOUBUTSU.gameuser -- user が SQL の keyword らしいので避けた
+  ( id BIGINT NOT NULL
   , email VARCHAR(256) NOT NULL
   , username text NOT NULL
-  , create_time TIMESTAMPTZ NOT NULL
+  , created_at TIMESTAMPTZ NOT NULL
 
-  , PRIMARY KEY (seq)
+  , PRIMARY KEY (id)
   );
+
 
 -- * イベント
 CREATE TABLE DOUBUTSU.event
-  ( seq BIGINT NOT NULL
-  , uid BIGINT NOT NULL
+  ( id BIGINT NOT NULL
+  , gameuser_id BIGINT NOT NULL
   , onsen_id INTEGER NOT NULL
   , typ INTEGER NOT NULL
   , event_data INTEGER NOT NULL
-  , create_time TIMESTAMPTZ NOT NULL
+  , created_at TIMESTAMPTZ NOT NULL
 
-  , PRIMARY KEY (seq)
+  , PRIMARY KEY (id)
   );
 
 -- ** 温泉のはじまり
