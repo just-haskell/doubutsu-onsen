@@ -13,7 +13,7 @@ CREATE SCHEMA DOUBUTSU;
 CREATE TABLE DOUBUTSU.gameuser -- user が SQL の keyword らしいので避けた
   ( id BIGINT NOT NULL
   , email VARCHAR(256) NOT NULL
-  , username text NOT NULL
+  , username TEXT NOT NULL
   , created_at TIMESTAMPTZ NOT NULL
 
   , PRIMARY KEY (id)
@@ -50,7 +50,7 @@ CREATE TABLE DOUBUTSU.event_action
 --  typ == 2
 CREATE TABLE DOUBUTSU.event_item
   ( seq INTEGER NOT NULL
-  , item_type INTEGER NOT NULL
+  , item_id INTEGER NOT NULL
   , reason_id INTEGER NOT NULL
 
   , PRIMARY KEY (seq)
@@ -64,7 +64,7 @@ CREATE TABLE DOUBUTSU.event_item
 --  typ == 4
 CREATE TABLE DOUBUTSU.event_growth
   ( seq INTEGER NOT NULL
-  , item_type INTEGER NOT NULL
+  , item_id INTEGER NOT NULL
   , growth_level INTEGER NOT NULL
 
   , PRIMARY KEY (seq)
@@ -82,3 +82,11 @@ CREATE TABLE DOUBUTSU.event_growth
 -- ** 天気が変わる
 --  typ == 6
 --  event_data == <天気の状態のID>
+
+
+-- * 種や木の実の種類 - 属性
+CREATE TABLE DOUBUTSU.item
+  ( id INTEGER NOT NULL
+  , item_name TEXT NOT NULL
+  , rarity INTEGER NOT NULL  -- 通常:0 , レア:1 , 激レア:2
+  )
