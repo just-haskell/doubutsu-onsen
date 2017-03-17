@@ -56,22 +56,18 @@ CREATE TABLE DOUBUTSU.event_item
   , PRIMARY KEY (seq)
   );
 
--- ** 種や木の実を植える
---  typ == 3
---  event_data == <種や木の実の種類のID>
-
 -- ** 種や木の実の成長
---  typ == 4
+--  typ == 3
 CREATE TABLE DOUBUTSU.event_growth
   ( seq INTEGER NOT NULL
   , item_id INTEGER NOT NULL
-  , growth_level INTEGER NOT NULL
+  , growth_level INTEGER NOT NULL -- 植えたときはレベル1
 
   , PRIMARY KEY (seq)
   );
 
 -- ** ミッション達成
---  typ == 5
+--  typ == 4
 --  event_data == <温泉のレベル>
 --  onsen_id とレベルにより特定ミッションが対応付けられる
 
