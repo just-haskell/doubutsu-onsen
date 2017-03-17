@@ -39,31 +39,31 @@ CREATE TABLE DOUBUTSU.event
 -- ** 動物の行動
 --  typ == 1
 CREATE TABLE DOUBUTSU.event_action
-  ( seq INTEGER NOT NULL
+  ( id INTEGER NOT NULL
   , doubutsu_id INTEGER NOT NULL
   , action_type INTEGER NOT NULL -- 来る: 0 , 帰る: 1 , or 癒しポーズID
 
-  , PRIMARY KEY (seq)
+  , PRIMARY KEY (id)
   );
 
 -- ** 種や木の実をもらう - 属性
 --  typ == 2
 CREATE TABLE DOUBUTSU.event_item
-  ( seq INTEGER NOT NULL
+  ( id INTEGER NOT NULL
   , item_id INTEGER NOT NULL
   , reason_id INTEGER NOT NULL
 
-  , PRIMARY KEY (seq)
+  , PRIMARY KEY (id)
   );
 
 -- ** 種や木の実の成長
 --  typ == 3
 CREATE TABLE DOUBUTSU.event_growth
-  ( seq INTEGER NOT NULL
+  ( id INTEGER NOT NULL
   , item_id INTEGER NOT NULL
   , growth_level INTEGER NOT NULL -- 植えたときはレベル1
 
-  , PRIMARY KEY (seq)
+  , PRIMARY KEY (id)
   );
 
 -- ** ミッション達成
