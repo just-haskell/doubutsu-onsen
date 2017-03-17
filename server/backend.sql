@@ -19,6 +19,29 @@ CREATE TABLE DOUBUTSU.gameuser -- user が SQL の keyword らしいので避け
   , PRIMARY KEY (id)
   );
 
+-- * 温泉 (ステージ?) - 属性
+CREATE TABLE DOUBUTSU.onsen
+  ( id INTEGER NOT NULL
+  , onsen_name TEXT NOT NULL
+  , released_at TIMESTAMPTZ NOT NULL
+
+  , PRIMARY KEY (id)
+  );
+
+-- * スロット (動物が温泉に入ったり、カスタマイズ用の木の種や実を植えたりする) - 属性
+CREATE TABLE DOUBUTSU.slot
+  ( id INTEGER NOT NULL
+  , onsen_id INTEGER NOT NULL
+  , local_slot_number INTEGER NOT NULL
+  , locate_x INTEGER NOT NULL
+  , locate_y INTEGER NOT NULL
+  , typ INTEGER NOT NULL  -- 動物が温泉に入る: 0, カスタマイズ: 1
+
+  , PRIMARY KEY (id)
+  );
+
+CREATE UNIQUE INDEX slot_onsen_slotnum ON DOUBUTSU.slot (onsen_id, local_slot_number);
+
 
 -- * イベント
 CREATE TABLE DOUBUTSU.event
@@ -102,27 +125,3 @@ CREATE TABLE DOUBUTSU.item
 -- ** その他
 -- got_reason_type == 1
 -- got_reason_data == <イベントのID?>
-
-
--- * 温泉 (ステージ?) - 属性
-CREATE TABLE DOUBUTSU.onsen
-  ( id INTEGER NOT NULL
-  , onsen_name TEXT NOT NULL
-  , released_at TIMESTAMPTZ NOT NULL
-
-  , PRIMARY KEY (id)
-  );
-
--- * スロット (動物が温泉に入ったり、カスタマイズ用の木の種や実を植えたりする) - 属性
-CREATE TABLE DOUBUTSU.slot
-  ( id INTEGER NOT NULL
-  , onsen_id INTEGER NOT NULL
-  , local_slot_number INTEGER NOT NULL
-  , locate_x INTEGER NOT NULL
-  , locate_y INTEGER NOT NULL
-  , typ INTEGER NOT NULL  -- 動物が温泉に入る: 0, カスタマイズ: 1
-
-  , PRIMARY KEY (id)
-  );
-
-CREATE UNIQUE INDEX slot_onsen_slotnum ON DOUBUTSU.slot (onsen_id, local_slot_number);
