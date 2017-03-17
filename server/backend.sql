@@ -40,6 +40,7 @@ CREATE TABLE DOUBUTSU.event
 --  typ == 1
 CREATE TABLE DOUBUTSU.event_action
   ( id INTEGER NOT NULL
+  , slot_id INTEGER NOT NULL
   , doubutsu_id INTEGER NOT NULL
   , action_type INTEGER NOT NULL -- 来る: 0 , 帰る: 1 , or 癒しポーズID
 
@@ -51,7 +52,8 @@ CREATE TABLE DOUBUTSU.event_action
 CREATE TABLE DOUBUTSU.event_item
   ( id INTEGER NOT NULL
   , item_id INTEGER NOT NULL
-  , reason_id INTEGER NOT NULL
+  , got_reason_type INTEGER NOT NULL
+  , got_reason_data INTEGER NOT NULL
 
   , PRIMARY KEY (id)
   );
@@ -60,6 +62,7 @@ CREATE TABLE DOUBUTSU.event_item
 --  typ == 3
 CREATE TABLE DOUBUTSU.event_growth
   ( id INTEGER NOT NULL
+  , slot_id INTEGER NOT NULL
   , item_id INTEGER NOT NULL
   , growth_level INTEGER NOT NULL -- 植えたときはレベル1
 
@@ -86,3 +89,14 @@ CREATE TABLE DOUBUTSU.item
   , item_name TEXT NOT NULL
   , rarity INTEGER NOT NULL  -- 通常:0 , レア:1 , 激レア:2
   )
+
+
+-- * 種や木の実をもらった理由詳細
+
+-- ** 動物が帰ったときにもらう - 属性
+-- got_reason_type == 0
+-- got_reason_data == <動物のID>
+
+-- ** その他
+-- got_reason_type == 1
+-- got_reason_data == <イベントのID?>
