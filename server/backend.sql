@@ -43,18 +43,7 @@ CREATE TABLE DOUBUTSU.slot
 CREATE UNIQUE INDEX slot_onsen_slotnum ON DOUBUTSU.slot (onsen_id, local_slot_number);
 
 
--- * イベント
-CREATE TABLE DOUBUTSU.event
-  ( id BIGINT NOT NULL
-  , gameuser_id BIGINT NOT NULL
-  , onsen_id INTEGER NOT NULL
-  , typ INTEGER NOT NULL
-  , event_data INTEGER NOT NULL
-  , created_at TIMESTAMPTZ NOT NULL
-
-  , PRIMARY KEY (id)
-  );
-
+-- * 各イベント詳細
 -- ** 温泉のはじまり
 --  typ == 0
 --  event_data == <温泉ステージID>
@@ -104,6 +93,18 @@ CREATE TABLE DOUBUTSU.event_growth
 -- ** 天気が変わる
 --  typ == 6
 --  event_data == <天気の状態のID>
+
+-- * イベント
+CREATE TABLE DOUBUTSU.event
+  ( id BIGINT NOT NULL
+  , gameuser_id BIGINT NOT NULL
+  , onsen_id INTEGER NOT NULL
+  , typ INTEGER NOT NULL
+  , event_data INTEGER NOT NULL
+  , created_at TIMESTAMPTZ NOT NULL
+
+  , PRIMARY KEY (id)
+  );
 
 
 -- * 種や木の実の種類 - 属性
