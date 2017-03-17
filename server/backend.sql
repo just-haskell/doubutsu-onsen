@@ -94,8 +94,8 @@ CREATE TABLE DOUBUTSU.event_growth
 --  typ == 6
 --  event_data == <天気の状態のID>
 
--- * イベント
-CREATE TABLE DOUBUTSU.event
+-- * イベントログ
+CREATE TABLE DOUBUTSU.event_log
   ( id BIGINT NOT NULL
   , gameuser_id BIGINT NOT NULL
   , onsen_id INTEGER NOT NULL
