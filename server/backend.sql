@@ -35,7 +35,7 @@ CREATE TABLE DOUBUTSU.slot
   , local_slot_number INTEGER NOT NULL
   , locate_x INTEGER NOT NULL
   , locate_y INTEGER NOT NULL
-  , typ INTEGER NOT NULL  -- 動物が温泉に入る: 0, カスタマイズ: 1
+  , slot_type INTEGER NOT NULL  -- 動物が温泉に入る: 0, カスタマイズ: 1
 
   , PRIMARY KEY (id)
   );
