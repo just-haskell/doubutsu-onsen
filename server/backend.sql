@@ -203,7 +203,7 @@ CREATE TABLE DOUBUTSU.custom_slot_status
   ( gameuser_id INTEGER NOT NULL
   , slot_id INTEGER NOT NULL
   , item_id INTEGER NOT NULL -- 何も植えられていない: -1
-  -- , doubutsu_pause INTEGER NOT NULL
+  , growth_level INTEGER NOT NULL
 
   , PRIMARY KEY (gameuser_id, slot_id)
   );
