@@ -118,7 +118,7 @@ CREATE TABLE DOUBUTSU.mission
 -- * 各イベント詳細
 -- ** 温泉のはじまり
 --  event_type == 0
---  event_data == <温泉ステージID>
+--  event_data    未使用: -1 固定
 
 -- ** 動物の行動
 --  event_type == 1
