@@ -114,13 +114,14 @@ CREATE TABLE DOUBUTSU.mission
   , PRIMARY KEY (onsen_id, onsen_level)
   );
 
+
 -- * 各イベント詳細
 -- ** 温泉のはじまり
---  typ == 0
+--  event_type == 0
 --  event_data == <温泉ステージID>
 
 -- ** 動物の行動
---  typ == 1
+--  event_type == 1
 CREATE TABLE DOUBUTSU.event_action
   ( id INTEGER NOT NULL
   , slot_id INTEGER NOT NULL
@@ -131,7 +132,7 @@ CREATE TABLE DOUBUTSU.event_action
   );
 
 -- ** 種や木の実をもらう - 属性
---  typ == 2
+--  event_type == 2
 CREATE TABLE DOUBUTSU.event_item
   ( id INTEGER NOT NULL
   , item_id INTEGER NOT NULL
@@ -142,7 +143,7 @@ CREATE TABLE DOUBUTSU.event_item
   );
 
 -- ** 種や木の実の成長
---  typ == 3
+--  event_type == 3
 CREATE TABLE DOUBUTSU.event_growth
   ( id INTEGER NOT NULL
   , slot_id INTEGER NOT NULL
@@ -153,16 +154,16 @@ CREATE TABLE DOUBUTSU.event_growth
   );
 
 -- ** ミッション達成
---  typ == 4
+--  event_type == 4
 --  event_data == <温泉のレベル>
 --  onsen_id とレベルにより特定ミッションが対応付けられる
 
 -- ** 時間が経つ
---  typ == 5
+--  event_type == 5
 --  event_data == <朝: 0 , 昼: 1 , 夕方: 2 , 夜: 3 のどれか>
 
 -- ** 天気が変わる
---  typ == 6
+--  event_type == 6
 --  event_data == <天気の状態のID>
 
 -- * イベントログ
@@ -170,7 +171,7 @@ CREATE TABLE DOUBUTSU.event_log
   ( id BIGINT NOT NULL
   , gameuser_id BIGINT NOT NULL
   , onsen_id INTEGER NOT NULL
-  , typ INTEGER NOT NULL
+  , event_type INTEGER NOT NULL
   , event_data INTEGER NOT NULL
   , created_at TIMESTAMPTZ NOT NULL
 
