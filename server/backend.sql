@@ -78,6 +78,41 @@ CREATE TABLE DOUBUTSU.doubutsu_size
 
 -- ** その他
 
+-- * 各ミッション詳細
+-- ** はじめてのお客さん - 属性
+-- mission_type == 0
+
+-- ** 特定の動物がn回、来た - 属性
+CREATE TABLE DOUBUTSU.mission_visited
+  ( id INTEGER NOT NULL
+  , doubutsu_id INTEGER NOT NULL
+  , times INTEGER NOT NULL
+
+  , PRIMARY KEY (id)
+  );
+
+-- ** 特定の種あるいは木の実をn回、植えた - 属性
+-- mission_type == 1
+CREATE TABLE DOUBUTSU.mission_used_item
+  ( id INTEGER NOT NULL
+  , item_id INTEGER NOT NULL
+  , times INTEGER NOT NULL
+
+  , PRIMARY KEY (id)
+  );
+
+-- ** どうぶつのお悩み - 属性
+-- mission_type == 2
+
+-- * ミッション (温泉レベルアップ条件) - 属性
+CREATE TABLE DOUBUTSU.mission
+  ( onsen_id INTEGER NOT NULL
+  , onsen_level INTEGER NOT NULL
+  , mission_type INTEGER NOT NULL
+  , mission_data INTEGER NOT NULL
+
+  , PRIMARY KEY (onsen_id, onsen_level)
+  );
 
 -- * 各イベント詳細
 -- ** 温泉のはじまり
