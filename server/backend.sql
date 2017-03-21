@@ -42,6 +42,14 @@ CREATE TABLE DOUBUTSU.slot
 
 CREATE UNIQUE INDEX slot_onsen_slotnum ON DOUBUTSU.slot (onsen_id, local_slot_number);
 
+-- * 種や木の実をもらった理由詳細
+
+-- ** 動物が帰ったときにもらう - 属性
+-- got_reason_type == 0
+-- got_reason_data == <動物のID>
+
+-- ** その他
+
 
 -- * 各イベント詳細
 -- ** 温泉のはじまり
@@ -115,12 +123,3 @@ CREATE TABLE DOUBUTSU.item
 
   , PRIMARY KEY (id)
   );
-
-
--- * 種や木の実をもらった理由詳細
-
--- ** 動物が帰ったときにもらう - 属性
--- got_reason_type == 0
--- got_reason_data == <動物のID>
-
--- ** その他
