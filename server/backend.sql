@@ -124,5 +124,3 @@ CREATE TABLE DOUBUTSU.item
 -- got_reason_data == <動物のID>
 
 -- ** その他
--- got_reason_type == 1
--- got_reason_data == <イベントのID?>
