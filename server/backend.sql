@@ -189,3 +189,21 @@ CREATE TABLE DOUBUTSU.onsen_status
 
   , PRIMARY KEY (gameuser_id, onsen_id)
   );
+
+CREATE TABLE DOUBUTSU.doubutsu_slot_status
+  ( gameuser_id INTEGER NOT NULL
+  , slot_id INTEGER NOT NULL
+  , doubutsu_id INTEGER NOT NULL -- 入っていない: -1
+  -- , doubutsu_pause INTEGER NOT NULL
+
+  , PRIMARY KEY (gameuser_id, slot_id)
+  );
+
+CREATE TABLE DOUBUTSU.custom_slot_status
+  ( gameuser_id INTEGER NOT NULL
+  , slot_id INTEGER NOT NULL
+  , item_id INTEGER NOT NULL -- 何も植えられていない: -1
+  -- , doubutsu_pause INTEGER NOT NULL
+
+  , PRIMARY KEY (gameuser_id, slot_id)
+  );
