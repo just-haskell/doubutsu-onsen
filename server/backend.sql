@@ -51,6 +51,25 @@ CREATE TABLE DOUBUTSU.item
   , PRIMARY KEY (id)
   );
 
+-- * 動物の種類(個体) - 属性
+CREATE TABLE DOUBUTSU.doubutsu
+  ( id INTEGER NOT NULL
+  , doubutsu_name TEXT NOT NULL
+  , released_at TIMESTAMPTZ NOT NULL
+
+  , PRIMARY KEY (id)
+  );
+
+-- * 動物のスロット占有相対座標
+CREATE TABLE DOUBUTSU.doubutsu_size
+  ( doubutsu_id INTEGER NOT NULL
+  , local_coord_number INTEGER NOT NULL
+  , relative_x INTEGER NOT NULL
+  , relative_y INTEGER NOT NULL
+
+  , PRIMARY KEY (doubutsu_id, local_coord_number)
+  );
+
 -- * 種や木の実をもらった理由詳細
 
 -- ** 動物が帰ったときにもらう - 属性
