@@ -42,6 +42,15 @@ CREATE TABLE DOUBUTSU.slot
 
 CREATE UNIQUE INDEX slot_onsen_slotnum ON DOUBUTSU.slot (onsen_id, local_slot_number);
 
+-- * 種や木の実の種類 - 属性
+CREATE TABLE DOUBUTSU.item
+  ( id INTEGER NOT NULL
+  , item_name TEXT NOT NULL
+  , rarity INTEGER NOT NULL  -- 通常:0 , レア:1 , 激レア:2
+
+  , PRIMARY KEY (id)
+  );
+
 -- * 種や木の実をもらった理由詳細
 
 -- ** 動物が帰ったときにもらう - 属性
@@ -110,16 +119,6 @@ CREATE TABLE DOUBUTSU.event_log
   , typ INTEGER NOT NULL
   , event_data INTEGER NOT NULL
   , created_at TIMESTAMPTZ NOT NULL
-
-  , PRIMARY KEY (id)
-  );
-
-
--- * 種や木の実の種類 - 属性
-CREATE TABLE DOUBUTSU.item
-  ( id INTEGER NOT NULL
-  , item_name TEXT NOT NULL
-  , rarity INTEGER NOT NULL  -- 通常:0 , レア:1 , 激レア:2
 
   , PRIMARY KEY (id)
   );
