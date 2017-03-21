@@ -177,3 +177,15 @@ CREATE TABLE DOUBUTSU.event_log
 
   , PRIMARY KEY (id)
   );
+
+
+-- * 温泉の状態 - 属性
+CREATE TABLE DOUBUTSU.onsen_status
+  ( gameuser_id INTEGER NOT NULL
+  , onsen_id INTEGER NOT NULL
+  , updated_at TIMESTAMPTZ NOT NULL
+  , onsen_level INTEGER NOT NULL
+  , seed INTEGER NOT NULL
+
+  , PRIMARY KEY (gameuser_id, onsen_id)
+  );
