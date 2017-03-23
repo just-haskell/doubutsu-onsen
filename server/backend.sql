@@ -186,6 +186,7 @@ CREATE TABLE DOUBUTSU.onsen_status
   , updated_at TIMESTAMPTZ NOT NULL
   , onsen_level INTEGER NOT NULL
   , seed INTEGER NOT NULL
+  , started_at TIMESTAMPTZ NOT NULL
 
   , PRIMARY KEY (gameuser_id, onsen_id)
   );
