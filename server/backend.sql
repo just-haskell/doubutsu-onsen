@@ -9,9 +9,18 @@ CREATE SCHEMA DOUBUTSU;
 
 -- foreign key 制約を利用するのは backup を考えたときの問題が無いと確認できてからにする
 
+-- * ゲーム
+CREATE TABLE DOUBUTSU.game
+  ( id BIGINT NOT NULL
+  , gameuser_id BIGINT NOT NULL
+
+  , PRIMARY KEY (id)
+  );
+
 -- * ユーザー
 CREATE TABLE DOUBUTSU.gameuser -- user が SQL の keyword らしいので避けた
   ( id BIGINT NOT NULL
+  , game_id BIGINT NOT NULL
   , email VARCHAR(256) NOT NULL
   , username TEXT NOT NULL
   , created_at TIMESTAMPTZ NOT NULL
