@@ -178,7 +178,7 @@ CREATE TABLE DOUBUTSU.event_growth
 -- * イベントログ
 CREATE TABLE DOUBUTSU.event_log
   ( id BIGINT NOT NULL
-  , gameuser_id BIGINT NOT NULL
+  , game_id  BIGINT NOT NULL
   , onsen_id INTEGER NOT NULL
   , event_type INTEGER NOT NULL
   , event_data INTEGER NOT NULL
@@ -190,14 +190,14 @@ CREATE TABLE DOUBUTSU.event_log
 
 -- * 温泉の状態 - 属性
 CREATE TABLE DOUBUTSU.onsen_status
-  ( gameuser_id INTEGER NOT NULL
+  ( game_id  INTEGER NOT NULL
   , onsen_id INTEGER NOT NULL
   , updated_at TIMESTAMPTZ NOT NULL
   , onsen_level INTEGER NOT NULL
   , seed INTEGER NOT NULL
   , started_at TIMESTAMPTZ NOT NULL
 
-  , PRIMARY KEY (gameuser_id, onsen_id)
+  , PRIMARY KEY (game_id , onsen_id)
   );
 
 -- * スロットの状態詳細
@@ -223,9 +223,9 @@ CREATE TABLE DOUBUTSU.slot_status_custom
 
 -- * スロットの状態 - 属性
 CREATE TABLE DOUBUTSU.slot_status
-  ( gameuser_id INTEGER NOT NULL
+  ( game_id  INTEGER NOT NULL
   , slot_id INTEGER NOT NULL
   , slot_data INTEGER NOT NULL
 
-  , PRIMARY KEY (gameuser_id, slot_id)
+  , PRIMARY KEY (game_id , slot_id)
   );
