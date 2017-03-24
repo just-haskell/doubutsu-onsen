@@ -39,14 +39,13 @@ CREATE TABLE DOUBUTSU.onsen
 
 -- * スロット (動物が温泉に入ったり、カスタマイズ用の木の種や実を植えたりする) - 属性
 CREATE TABLE DOUBUTSU.slot
-  ( id INTEGER NOT NULL
-  , onsen_id INTEGER NOT NULL
+  ( onsen_id INTEGER NOT NULL
   , local_slot_number INTEGER NOT NULL
   , locate_x INTEGER NOT NULL
   , locate_y INTEGER NOT NULL
   , slot_type INTEGER NOT NULL  -- 動物が温泉に入る: 0, カスタマイズ: 1
 
-  , PRIMARY KEY (id)
+  , PRIMARY KEY (onsen_id, local_slot_number)
   );
 
 CREATE UNIQUE INDEX slot_onsen_slotnum ON DOUBUTSU.slot (onsen_id, local_slot_number);
@@ -133,7 +132,8 @@ CREATE TABLE DOUBUTSU.mission
 --  event_type == 1
 CREATE TABLE DOUBUTSU.event_action
   ( id INTEGER NOT NULL
-  , slot_id INTEGER NOT NULL
+  , onsen_id INTEGER NOT NULL
+  , local_slot_number INTEGER NOT NULL
   , doubutsu_id INTEGER NOT NULL
   , action_type INTEGER NOT NULL -- 来る: 0 , 帰る: 1 , or 癒しポーズID
 
@@ -155,7 +155,8 @@ CREATE TABLE DOUBUTSU.event_item
 --  event_type == 3
 CREATE TABLE DOUBUTSU.event_growth
   ( id INTEGER NOT NULL
-  , slot_id INTEGER NOT NULL
+  , onsen_id INTEGER NOT NULL
+  , local_slot_number INTEGER NOT NULL
   , item_id INTEGER NOT NULL
   , growth_level INTEGER NOT NULL -- 植えたときはレベル1
 
@@ -224,8 +225,9 @@ CREATE TABLE DOUBUTSU.slot_status_custom
 -- * スロットの状態 - 属性
 CREATE TABLE DOUBUTSU.slot_status
   ( game_id  INTEGER NOT NULL
-  , slot_id INTEGER NOT NULL
+  , onsen_id INTEGER NOT NULL
+  , local_slot_number INTEGER NOT NULL
   , slot_data INTEGER NOT NULL
 
-  , PRIMARY KEY (game_id , slot_id)
+  , PRIMARY KEY (game_id, onsen_id, local_slot_number)
   );
