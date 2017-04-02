@@ -78,6 +78,15 @@ CREATE TABLE DOUBUTSU.doubutsu_size
   , PRIMARY KEY (doubutsu_id, local_coord_number)
   );
 
+-- * 種や木の実の所持状態
+CREATE TABLE DOUBUTSU.item_stock
+  ( game_id BIGINT NOT NULL
+  , item_id INTEGER NOT NULL
+  , amount INTEGER NOT NULL
+
+  , PRIMARY KEY (game_id, item_id)
+  );
+
 -- * 種や木の実をもらった理由詳細
 
 -- ** 動物が帰ったときにもらう - 属性
@@ -166,10 +175,16 @@ CREATE TABLE DOUBUTSU.event_growth
   , PRIMARY KEY (id)
   );
 
--- ** ミッション達成
+-- ** ミッション(の状態遷移)
 --  event_type == 4
---  event_data == <温泉のレベル>
---  onsen_id とレベルにより特定ミッションが対応付けられる
+--  event_data == id
+CREATE TABLE DOUBUTSU.event_mission
+  ( id INTEGER NOT NULL
+  , onsen_level INTEGER NOT NULL
+  , mission_status INTEGER NOT NULL -- 遷移後状態
+
+  , PRIMARY KEY (id)
+  );
 
 -- ** 時間が経つ
 --  event_type == 5
@@ -198,6 +213,7 @@ CREATE TABLE DOUBUTSU.onsen_status
   , onsen_id INTEGER NOT NULL
   , updated_at TIMESTAMPTZ NOT NULL
   , onsen_level INTEGER NOT NULL
+  , missoin_status INTEGER NOT NULL  -- 未開始: 0 , 実行中: 1 , 達成: 2
   , seed INTEGER NOT NULL
   , started_at TIMESTAMPTZ NOT NULL
 
