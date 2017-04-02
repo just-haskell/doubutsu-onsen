@@ -130,6 +130,7 @@ CREATE TABLE DOUBUTSU.mission
 
 -- ** 動物の行動
 --  event_type == 1
+--  event_data == id
 CREATE TABLE DOUBUTSU.event_action
   ( id INTEGER NOT NULL
   , onsen_id INTEGER NOT NULL
@@ -142,6 +143,7 @@ CREATE TABLE DOUBUTSU.event_action
 
 -- ** 種や木の実をもらう - 属性
 --  event_type == 2
+--  event_data == id
 CREATE TABLE DOUBUTSU.event_item
   ( id INTEGER NOT NULL
   , item_id INTEGER NOT NULL
@@ -153,6 +155,7 @@ CREATE TABLE DOUBUTSU.event_item
 
 -- ** 種や木の実の成長
 --  event_type == 3
+--  event_data == id
 CREATE TABLE DOUBUTSU.event_growth
   ( id INTEGER NOT NULL
   , onsen_id INTEGER NOT NULL
