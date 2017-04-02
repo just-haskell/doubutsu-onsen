@@ -48,8 +48,6 @@ CREATE TABLE DOUBUTSU.slot
   , PRIMARY KEY (onsen_id, local_slot_number)
   );
 
-CREATE UNIQUE INDEX slot_onsen_slotnum ON DOUBUTSU.slot (onsen_id, local_slot_number);
-
 -- * 種や木の実の種類 - 属性
 CREATE TABLE DOUBUTSU.item
   ( id INTEGER NOT NULL
