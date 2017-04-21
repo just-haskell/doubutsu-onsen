@@ -2,8 +2,8 @@
 
 set -x
 
-## createdb -T template0 -E UTF-8 -l ja_JP.UTF-8 onsentest
+## createdb -T template0 -E UTF-8 -l ja_JP.UTF-8 onsendev
 
-psql -c 'DROP SCHEMA IF EXISTS DOUBUTSU CASCADE' onsentest
+psql -c 'DROP SCHEMA IF EXISTS DOUBUTSU CASCADE' onsendev
 
-psql onsentest < backend.sql
+psql onsendev < backend.sql
