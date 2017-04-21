@@ -23,6 +23,9 @@ library
                        Database.Relational.Extra.Sequence
                        Database.DoubutsuOnsen.DataSource
 
+                       Database.DoubutsuOnsen.Entity.Gameuser
+                       Database.DoubutsuOnsen.Entity.Game
+
   other-extensions:
                        FlexibleContexts
                        MultiParamTypeClasses
