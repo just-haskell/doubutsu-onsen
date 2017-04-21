@@ -123,57 +123,51 @@ CREATE TABLE DOUBUTSU.item_stock
 
 -- ** その他
 
--- * 各ミッション詳細
--- ** はじめてのお客さん - 属性
--- mission_type == 0
--- mission_data == doubutsu_id
-
--- ** 特定の動物がn回、来た - 属性
--- mission_type == 1
--- mission_data == id
-CREATE TABLE DOUBUTSU.mission_visited
-  ( id INTEGER NOT NULL
-  , doubutsu_id INTEGER NOT NULL
-  , times INTEGER NOT NULL
-
-  , PRIMARY KEY (id)
-  );
-
-CREATE TABLE DOUBUTSU.mission_visited_seq
-  ( seq INTEGER NOT NULL
-  );
-
-INSERT INTO DOUBUTSU.mission_visited_seq VALUES (0);
-
--- ** 特定の種あるいは木の実をn回、植えた - 属性
--- mission_type == 2
--- mission_data == id
-CREATE TABLE DOUBUTSU.mission_used_item
-  ( id INTEGER NOT NULL
-  , item_id INTEGER NOT NULL
-  , times INTEGER NOT NULL
-
-  , PRIMARY KEY (id)
-  );
-
-CREATE TABLE DOUBUTSU.mission_used_item_seq
-  ( seq INTEGER NOT NULL
-  );
-
-INSERT INTO DOUBUTSU.mission_used_item_seq VALUES (0);
-
--- ** どうぶつのお悩み - 属性
--- mission_type == 3
 
 -- * ミッション (温泉レベルアップ条件) - 属性
 CREATE TABLE DOUBUTSU.mission
   ( onsen_id INTEGER NOT NULL
   , onsen_level INTEGER NOT NULL
   , mission_type INTEGER NOT NULL
-  , mission_data INTEGER NOT NULL
 
   , PRIMARY KEY (onsen_id, onsen_level)
   );
+
+-- * 各ミッション詳細
+-- ** はじめてのお客さん - 属性
+-- mission_type == 0
+CREATE TABLE DOUBUTSU.mission_first_visited
+  ( onsen_id INTEGER NOT NULL
+  , onsen_level INTEGER NOT NULL
+  , doubutsu_id INTEGER NOT NULL
+
+  , PRIMARY KEY (onsen_id, onsen_level)
+  );
+
+-- ** 特定の動物がn回、来た - 属性
+-- mission_type == 1
+CREATE TABLE DOUBUTSU.mission_visited
+  ( onsen_id INTEGER NOT NULL
+  , onsen_level INTEGER NOT NULL
+  , doubutsu_id INTEGER NOT NULL
+  , times INTEGER NOT NULL
+
+  , PRIMARY KEY (onsen_id, onsen_level)
+  );
+
+-- ** 特定の種あるいは木の実をn回、植えた - 属性
+-- mission_type == 2
+CREATE TABLE DOUBUTSU.mission_used_item
+  ( onsen_id INTEGER NOT NULL
+  , onsen_level INTEGER NOT NULL
+  , item_id INTEGER NOT NULL
+  , times INTEGER NOT NULL
+
+  , PRIMARY KEY (onsen_id, onsen_level)
+  );
+
+-- ** どうぶつのお悩み - 属性
+-- mission_type == 3
 
 
 -- * 各イベント詳細
