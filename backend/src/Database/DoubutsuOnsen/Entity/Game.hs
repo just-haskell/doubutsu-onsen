@@ -5,7 +5,7 @@ module Database.DoubutsuOnsen.Entity.Game where
 
 import GHC.Generics (Generic)
 import Prelude hiding (seq)
-import Data.Int (Int64)
+import Data.Int (Int32)
 
 import Database.Relational.Extra.Sequence
   (SequenceDerivable (..), unsafeSpecifySequence, SequenceFromTable (..))
@@ -17,7 +17,7 @@ $(defineTable [] "DOUBUTSU" "game"
 $(defineTable [] "DOUBUTSU" "game_seq"
   [''Generic])
 
-instance SequenceDerivable GameSeq Int64 where
+instance SequenceDerivable GameSeq Int32 where
   deriveSequence = unsafeSpecifySequence seq seq'
 
-instance SequenceFromTable Game GameSeq Int64
+instance SequenceFromTable Game GameSeq Int32

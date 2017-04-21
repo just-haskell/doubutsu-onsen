@@ -11,8 +11,8 @@ CREATE SCHEMA DOUBUTSU;
 
 -- * ユーザー
 CREATE TABLE DOUBUTSU.gameuser -- user が SQL の keyword らしいので避けた
-  ( id BIGINT NOT NULL
-  , game_id BIGINT NOT NULL
+  ( id INTEGER NOT NULL
+  , game_id INTEGER NOT NULL
   , email VARCHAR(256) NOT NULL
   , username TEXT NOT NULL
   , created_at TIMESTAMP NOT NULL
@@ -21,21 +21,21 @@ CREATE TABLE DOUBUTSU.gameuser -- user が SQL の keyword らしいので避け
   );
 
 CREATE TABLE DOUBUTSU.gameuser_seq
-  ( seq BIGINT NOT NULL
+  ( seq INTEGER NOT NULL
   );
 
 INSERT INTO DOUBUTSU.gameuser_seq VALUES (0);
 
 -- * ゲーム
 CREATE TABLE DOUBUTSU.game
-  ( id BIGINT NOT NULL
-  , gameuser_id BIGINT NOT NULL
+  ( id INTEGER NOT NULL
+  , gameuser_id INTEGER NOT NULL
 
   , PRIMARY KEY (id)
   );
 
 CREATE TABLE DOUBUTSU.game_seq
-  ( seq BIGINT NOT NULL
+  ( seq INTEGER NOT NULL
   );
 
 INSERT INTO DOUBUTSU.game_seq VALUES (0);
@@ -108,7 +108,7 @@ INSERT INTO DOUBUTSU.item_seq VALUES (0);
 
 -- * 種や木の実の所持状態
 CREATE TABLE DOUBUTSU.item_stock
-  ( game_id BIGINT NOT NULL
+  ( game_id INTEGER NOT NULL
   , item_id INTEGER NOT NULL
   , amount INTEGER NOT NULL
 
@@ -173,7 +173,7 @@ CREATE TABLE DOUBUTSU.mission_used_item
 -- * イベントログ
 CREATE TABLE DOUBUTSU.event_log
   ( id BIGINT NOT NULL
-  , game_id  BIGINT NOT NULL
+  , game_id INTEGER NOT NULL
   , onsen_id INTEGER NOT NULL
   , event_type INTEGER NOT NULL
   , created_at TIMESTAMP NOT NULL
