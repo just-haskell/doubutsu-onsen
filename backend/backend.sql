@@ -170,99 +170,12 @@ CREATE TABLE DOUBUTSU.mission_used_item
 -- mission_type == 3
 
 
--- * 各イベント詳細
--- ** 温泉のはじまり
---  event_type == 0
---  event_data == onsen_id
-
--- ** 動物の行動
---  event_type == 1
---  event_data == id
-CREATE TABLE DOUBUTSU.event_action
-  ( id INTEGER NOT NULL
-  , onsen_id INTEGER NOT NULL
-  , local_slot_number INTEGER NOT NULL
-  , doubutsu_id INTEGER NOT NULL
-  , action_type INTEGER NOT NULL -- 来る: 0 , 帰る: 1 , or 癒しポーズID
-
-  , PRIMARY KEY (id)
-  );
-
-CREATE TABLE DOUBUTSU.event_action_seq
-  ( seq INTEGER NOT NULL
-  );
-
-INSERT INTO DOUBUTSU.event_action_seq VALUES (0);
-
--- ** 種や木の実をもらう - 属性
---  event_type == 2
---  event_data == id
-CREATE TABLE DOUBUTSU.event_item
-  ( id INTEGER NOT NULL
-  , item_id INTEGER NOT NULL
-  , got_reason_type INTEGER NOT NULL
-  , got_reason_data INTEGER NOT NULL
-
-  , PRIMARY KEY (id)
-  );
-
-CREATE TABLE DOUBUTSU.event_item_seq
-  ( seq INTEGER NOT NULL
-  );
-
-INSERT INTO DOUBUTSU.event_item_seq VALUES (0);
-
--- ** 種や木の実の成長
---  event_type == 3
---  event_data == id
-CREATE TABLE DOUBUTSU.event_growth
-  ( id INTEGER NOT NULL
-  , onsen_id INTEGER NOT NULL
-  , local_slot_number INTEGER NOT NULL
-  , item_id INTEGER NOT NULL
-  , growth_level INTEGER NOT NULL -- 植えたときはレベル1
-
-  , PRIMARY KEY (id)
-  );
-
-CREATE TABLE DOUBUTSU.event_growth_seq
-  ( seq INTEGER NOT NULL
-  );
-
-INSERT INTO DOUBUTSU.event_growth_seq VALUES (0);
-
--- ** ミッション(の状態遷移)
---  event_type == 4
---  event_data == id
-CREATE TABLE DOUBUTSU.event_mission
-  ( id INTEGER NOT NULL
-  , onsen_level INTEGER NOT NULL
-  , mission_status INTEGER NOT NULL -- 遷移後状態
-
-  , PRIMARY KEY (id)
-  );
-
-CREATE TABLE DOUBUTSU.event_mission_seq
-  ( seq INTEGER NOT NULL
-  );
-
-INSERT INTO DOUBUTSU.event_mission_seq VALUES (0);
-
--- ** 時間が経つ
---  event_type == 5
---  event_data == <朝: 0 , 昼: 1 , 夕方: 2 , 夜: 3 のどれか>
-
--- ** 天気が変わる
---  event_type == 6
---  event_data == <天気の状態のID>
-
 -- * イベントログ
 CREATE TABLE DOUBUTSU.event_log
   ( id BIGINT NOT NULL
   , game_id  BIGINT NOT NULL
   , onsen_id INTEGER NOT NULL
   , event_type INTEGER NOT NULL
-  , event_data INTEGER NOT NULL
   , created_at TIMESTAMP NOT NULL
 
   , PRIMARY KEY (id)
@@ -273,6 +186,80 @@ CREATE TABLE DOUBUTSU.event_log_seq
   );
 
 INSERT INTO DOUBUTSU.event_log_seq VALUES (0);
+
+-- * 各イベント詳細
+-- ** 温泉のはじまり
+--  event_type == 0
+CREATE TABLE DOUBUTSU.event_start
+  ( event_log_id INTEGER NOT NULL
+  , onsen_id INTEGER NOT NULL
+
+  , PRIMARY KEY (event_log_id)
+  );
+
+-- ** 動物の行動
+--  event_type == 1
+--  event_data == id
+CREATE TABLE DOUBUTSU.event_action
+  ( event_log_id INTEGER NOT NULL
+  , onsen_id INTEGER NOT NULL
+  , local_slot_number INTEGER NOT NULL
+  , doubutsu_id INTEGER NOT NULL
+  , action_type INTEGER NOT NULL -- 来る: 0 , 帰る: 1 , or 癒しポーズID
+
+  , PRIMARY KEY (event_log_id)
+  );
+
+-- ** 種や木の実をもらう - 属性
+--  event_type == 2
+--  event_data == id
+CREATE TABLE DOUBUTSU.event_item
+  ( event_log_id INTEGER NOT NULL
+  , item_id INTEGER NOT NULL
+  , got_reason_type INTEGER NOT NULL
+  , got_reason_data INTEGER NOT NULL
+
+  , PRIMARY KEY (event_log_id)
+  );
+
+-- ** 種や木の実の成長
+--  event_type == 3
+--  event_data == id
+CREATE TABLE DOUBUTSU.event_growth
+  ( event_log_id INTEGER NOT NULL
+  , onsen_id INTEGER NOT NULL
+  , local_slot_number INTEGER NOT NULL
+  , item_id INTEGER NOT NULL
+  , growth_level INTEGER NOT NULL -- 植えたときはレベル1
+
+  , PRIMARY KEY (event_log_id)
+  );
+
+-- ** ミッション(の状態遷移)
+--  event_type == 4
+--  event_data == id
+CREATE TABLE DOUBUTSU.event_mission
+  ( event_log_id INTEGER NOT NULL
+  , onsen_level INTEGER NOT NULL
+  , mission_status INTEGER NOT NULL -- 遷移後状態
+
+  , PRIMARY KEY (event_log_id)
+  );
+
+-- ** 時間が経つ
+--  event_type == 5
+CREATE TABLE DOUBUTSU.event_time
+  ( event_log_id INTEGER NOT NULL
+  , time_type INTEGER NOT NULL -- 朝: 0 , 昼: 1 , 夕方: 2 , 夜: 3
+  );
+
+-- ** 天気が変わる
+--  event_type == 6
+CREATE TABLE DOUBUTSU.event_whether
+  ( event_log_id INTEGER NOT NULL
+  , whether INTEGER NOT NULL -- 天気の状態のID
+  );
+
 
 -- * 温泉の状態 - 属性
 CREATE TABLE DOUBUTSU.onsen_status
