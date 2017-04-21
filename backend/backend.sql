@@ -139,6 +139,12 @@ CREATE TABLE DOUBUTSU.mission_visited
   , PRIMARY KEY (id)
   );
 
+CREATE TABLE DOUBUTSU.mission_visited_seq
+  ( seq INTEGER NOT NULL
+  );
+
+INSERT INTO DOUBUTSU.mission_visited_seq VALUES (0);
+
 -- ** 特定の種あるいは木の実をn回、植えた - 属性
 -- mission_type == 2
 -- mission_data == id
@@ -149,6 +155,12 @@ CREATE TABLE DOUBUTSU.mission_used_item
 
   , PRIMARY KEY (id)
   );
+
+CREATE TABLE DOUBUTSU.mission_used_item_seq
+  ( seq INTEGER NOT NULL
+  );
+
+INSERT INTO DOUBUTSU.mission_used_item_seq VALUES (0);
 
 -- ** どうぶつのお悩み - 属性
 -- mission_type == 3
@@ -182,6 +194,12 @@ CREATE TABLE DOUBUTSU.event_action
   , PRIMARY KEY (id)
   );
 
+CREATE TABLE DOUBUTSU.event_action_seq
+  ( seq INTEGER NOT NULL
+  );
+
+INSERT INTO DOUBUTSU.event_action_seq VALUES (0);
+
 -- ** 種や木の実をもらう - 属性
 --  event_type == 2
 --  event_data == id
@@ -193,6 +211,12 @@ CREATE TABLE DOUBUTSU.event_item
 
   , PRIMARY KEY (id)
   );
+
+CREATE TABLE DOUBUTSU.event_item_seq
+  ( seq INTEGER NOT NULL
+  );
+
+INSERT INTO DOUBUTSU.event_item_seq VALUES (0);
 
 -- ** 種や木の実の成長
 --  event_type == 3
@@ -207,6 +231,12 @@ CREATE TABLE DOUBUTSU.event_growth
   , PRIMARY KEY (id)
   );
 
+CREATE TABLE DOUBUTSU.event_growth_seq
+  ( seq INTEGER NOT NULL
+  );
+
+INSERT INTO DOUBUTSU.event_growth_seq VALUES (0);
+
 -- ** ミッション(の状態遷移)
 --  event_type == 4
 --  event_data == id
@@ -217,6 +247,12 @@ CREATE TABLE DOUBUTSU.event_mission
 
   , PRIMARY KEY (id)
   );
+
+CREATE TABLE DOUBUTSU.event_mission_seq
+  ( seq INTEGER NOT NULL
+  );
+
+INSERT INTO DOUBUTSU.event_mission_seq VALUES (0);
 
 -- ** 時間が経つ
 --  event_type == 5
@@ -238,6 +274,11 @@ CREATE TABLE DOUBUTSU.event_log
   , PRIMARY KEY (id)
   );
 
+CREATE TABLE DOUBUTSU.event_log_seq
+  ( seq INTEGER NOT NULL
+  );
+
+INSERT INTO DOUBUTSU.event_log_seq VALUES (0);
 
 -- * 温泉の状態 - 属性
 CREATE TABLE DOUBUTSU.onsen_status
