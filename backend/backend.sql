@@ -297,29 +297,23 @@ CREATE TABLE DOUBUTSU.onsen_status
 -- ** 動物が入る - 属性
 -- slot_type == 0
 CREATE TABLE DOUBUTSU.slot_status_doubutsu
-  ( id INTEGER NOT NULL
+  ( game_id  INTEGER NOT NULL
+  , onsen_id INTEGER NOT NULL
+  , local_slot_number INTEGER NOT NULL
   , doubutsu_id INTEGER NOT NULL -- 入っていない: -1
   -- , doubutsu_pause INTEGER NOT NULL
 
-  , PRIMARY KEY (id)
+  , PRIMARY KEY (game_id, onsen_id, local_slot_number)
   );
 
 -- ** カスタマイズ - 属性
 -- slot_type == 1
 CREATE TABLE DOUBUTSU.slot_status_custom
-  ( id INTEGER NOT NULL
-  , item_id INTEGER NOT NULL -- 何も植えられていない: -1
-  , growth_level INTEGER NOT NULL
-
-  , PRIMARY KEY (id)
-  );
-
--- * スロットの状態 - 属性
-CREATE TABLE DOUBUTSU.slot_status
   ( game_id  INTEGER NOT NULL
   , onsen_id INTEGER NOT NULL
   , local_slot_number INTEGER NOT NULL
-  , slot_data INTEGER NOT NULL
+  , item_id INTEGER NOT NULL -- 何も植えられていない: -1
+  , growth_level INTEGER NOT NULL
 
   , PRIMARY KEY (game_id, onsen_id, local_slot_number)
   );
