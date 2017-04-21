@@ -182,7 +182,7 @@ CREATE TABLE DOUBUTSU.event_log
   );
 
 CREATE TABLE DOUBUTSU.event_log_seq
-  ( seq INTEGER NOT NULL
+  ( seq BIGINT NOT NULL
   );
 
 INSERT INTO DOUBUTSU.event_log_seq VALUES (0);

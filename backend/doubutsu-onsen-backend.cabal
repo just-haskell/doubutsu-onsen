@@ -34,6 +34,7 @@ library
                        Database.DoubutsuOnsen.Entity.Mission
                        Database.DoubutsuOnsen.Entity.MissionVisited
                        Database.DoubutsuOnsen.Entity.MissionUsedItem
+                       Database.DoubutsuOnsen.Entity.EventLog
 
   other-extensions:
                        FlexibleContexts
