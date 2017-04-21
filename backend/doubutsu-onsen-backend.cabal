@@ -27,6 +27,8 @@ library
                        Database.DoubutsuOnsen.Entity.Game
                        Database.DoubutsuOnsen.Entity.Onsen
                        Database.DoubutsuOnsen.Entity.Slot
+                       Database.DoubutsuOnsen.Entity.Doubutsu
+                       Database.DoubutsuOnsen.Entity.DoubutsuSize
 
   other-extensions:
                        FlexibleContexts
