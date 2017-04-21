@@ -267,7 +267,7 @@ CREATE TABLE DOUBUTSU.onsen_status
   , onsen_id INTEGER NOT NULL
   , updated_at TIMESTAMP NOT NULL
   , onsen_level INTEGER NOT NULL
-  , missoin_status INTEGER NOT NULL  -- 未開始: 0 , 実行中: 1 , 達成: 2
+  , mission_status INTEGER NOT NULL  -- 未開始: 0 , 実行中: 1 , 達成: 2
   , seed INTEGER NOT NULL
   , started_at TIMESTAMP NOT NULL
 
