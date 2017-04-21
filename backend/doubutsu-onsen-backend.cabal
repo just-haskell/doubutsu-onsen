@@ -31,6 +31,9 @@ library
                        Database.DoubutsuOnsen.Entity.DoubutsuSize
                        Database.DoubutsuOnsen.Entity.Item
                        Database.DoubutsuOnsen.Entity.ItemStock
+                       Database.DoubutsuOnsen.Entity.Mission
+                       Database.DoubutsuOnsen.Entity.MissionVisited
+                       Database.DoubutsuOnsen.Entity.MissionUsedItem
 
   other-extensions:
                        FlexibleContexts
