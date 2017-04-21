@@ -66,21 +66,6 @@ CREATE TABLE DOUBUTSU.slot
   , PRIMARY KEY (onsen_id, local_slot_number)
   );
 
--- * 種や木の実の種類 - 属性
-CREATE TABLE DOUBUTSU.item
-  ( id INTEGER NOT NULL
-  , item_name TEXT NOT NULL
-  , rarity INTEGER NOT NULL  -- 通常:0 , レア:1 , 激レア:2
-
-  , PRIMARY KEY (id)
-  );
-
-CREATE TABLE DOUBUTSU.item_seq
-  ( seq INTEGER NOT NULL
-  );
-
-INSERT INTO DOUBUTSU.item_seq VALUES (0);
-
 -- * 動物の種類(個体) - 属性
 CREATE TABLE DOUBUTSU.doubutsu
   ( id INTEGER NOT NULL
@@ -105,6 +90,21 @@ CREATE TABLE DOUBUTSU.doubutsu_size
 
   , PRIMARY KEY (doubutsu_id, local_coord_number)
   );
+
+-- * 種や木の実の種類 - 属性
+CREATE TABLE DOUBUTSU.item
+  ( id INTEGER NOT NULL
+  , item_name TEXT NOT NULL
+  , rarity INTEGER NOT NULL  -- 通常:0 , レア:1 , 激レア:2
+
+  , PRIMARY KEY (id)
+  );
+
+CREATE TABLE DOUBUTSU.item_seq
+  ( seq INTEGER NOT NULL
+  );
+
+INSERT INTO DOUBUTSU.item_seq VALUES (0);
 
 -- * 種や木の実の所持状態
 CREATE TABLE DOUBUTSU.item_stock
