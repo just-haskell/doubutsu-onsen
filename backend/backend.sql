@@ -15,7 +15,7 @@ CREATE TABLE DOUBUTSU.gameuser -- user が SQL の keyword らしいので避け
   , game_id BIGINT NOT NULL
   , email VARCHAR(256) NOT NULL
   , username TEXT NOT NULL
-  , created_at TIMESTAMPTZ NOT NULL
+  , created_at TIMESTAMP NOT NULL
 
   , PRIMARY KEY (id)
   );
@@ -32,7 +32,7 @@ CREATE TABLE DOUBUTSU.game
 CREATE TABLE DOUBUTSU.onsen
   ( id INTEGER NOT NULL
   , onsen_name TEXT NOT NULL
-  , released_at TIMESTAMPTZ NOT NULL
+  , released_at TIMESTAMP NOT NULL
 
   , PRIMARY KEY (id)
   );
@@ -61,7 +61,7 @@ CREATE TABLE DOUBUTSU.item
 CREATE TABLE DOUBUTSU.doubutsu
   ( id INTEGER NOT NULL
   , doubutsu_name TEXT NOT NULL
-  , released_at TIMESTAMPTZ NOT NULL
+  , released_at TIMESTAMP NOT NULL
 
   , PRIMARY KEY (id)
   );
@@ -199,7 +199,7 @@ CREATE TABLE DOUBUTSU.event_log
   , onsen_id INTEGER NOT NULL
   , event_type INTEGER NOT NULL
   , event_data INTEGER NOT NULL
-  , created_at TIMESTAMPTZ NOT NULL
+  , created_at TIMESTAMP NOT NULL
 
   , PRIMARY KEY (id)
   );
@@ -209,11 +209,11 @@ CREATE TABLE DOUBUTSU.event_log
 CREATE TABLE DOUBUTSU.onsen_status
   ( game_id  INTEGER NOT NULL
   , onsen_id INTEGER NOT NULL
-  , updated_at TIMESTAMPTZ NOT NULL
+  , updated_at TIMESTAMP NOT NULL
   , onsen_level INTEGER NOT NULL
   , missoin_status INTEGER NOT NULL  -- 未開始: 0 , 実行中: 1 , 達成: 2
   , seed INTEGER NOT NULL
-  , started_at TIMESTAMPTZ NOT NULL
+  , started_at TIMESTAMP NOT NULL
 
   , PRIMARY KEY (game_id , onsen_id)
   );
