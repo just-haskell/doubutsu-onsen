@@ -20,6 +20,12 @@ CREATE TABLE DOUBUTSU.gameuser -- user が SQL の keyword らしいので避け
   , PRIMARY KEY (id)
   );
 
+CREATE TABLE DOUBUTSU.gameuser_seq
+  ( seq BIGINT NOT NULL
+  );
+
+INSERT INTO DOUBUTSU.gameuser_seq VALUES (0);
+
 -- * ゲーム
 CREATE TABLE DOUBUTSU.game
   ( id BIGINT NOT NULL
@@ -27,6 +33,12 @@ CREATE TABLE DOUBUTSU.game
 
   , PRIMARY KEY (id)
   );
+
+CREATE TABLE DOUBUTSU.game_seq
+  ( seq BIGINT NOT NULL
+  );
+
+INSERT INTO DOUBUTSU.game_seq VALUES (0);
 
 -- * 温泉 (ステージ?) - 属性
 CREATE TABLE DOUBUTSU.onsen
@@ -36,6 +48,12 @@ CREATE TABLE DOUBUTSU.onsen
 
   , PRIMARY KEY (id)
   );
+
+CREATE TABLE DOUBUTSU.onsen_seq
+  ( seq BIGINT NOT NULL
+  );
+
+INSERT INTO DOUBUTSU.onsen_seq VALUES (0);
 
 -- * スロット (動物が温泉に入ったり、カスタマイズ用の木の種や実を植えたりする) - 属性
 CREATE TABLE DOUBUTSU.slot
@@ -57,6 +75,12 @@ CREATE TABLE DOUBUTSU.item
   , PRIMARY KEY (id)
   );
 
+CREATE TABLE DOUBUTSU.item_seq
+  ( seq INTEGER NOT NULL
+  );
+
+INSERT INTO DOUBUTSU.item_seq VALUES (0);
+
 -- * 動物の種類(個体) - 属性
 CREATE TABLE DOUBUTSU.doubutsu
   ( id INTEGER NOT NULL
@@ -65,6 +89,12 @@ CREATE TABLE DOUBUTSU.doubutsu
 
   , PRIMARY KEY (id)
   );
+
+CREATE TABLE DOUBUTSU.doubutsu_seq
+  ( seq INTEGER NOT NULL
+  );
+
+INSERT INTO DOUBUTSU.doubutsu_seq VALUES (0);
 
 -- * 動物のスロット占有相対座標
 CREATE TABLE DOUBUTSU.doubutsu_size
