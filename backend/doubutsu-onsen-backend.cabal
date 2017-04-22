@@ -40,6 +40,9 @@ library
                        Database.DoubutsuOnsen.Entity.EventGrowth
                        Database.DoubutsuOnsen.Entity.EventMission
                        Database.DoubutsuOnsen.Entity.EventWhether
+                       Database.DoubutsuOnsen.Entity.OnsenStatus
+                       Database.DoubutsuOnsen.Entity.SlotStatusDoubutsu
+                       Database.DoubutsuOnsen.Entity.SlotStatusCustom
 
   other-extensions:
                        FlexibleContexts
