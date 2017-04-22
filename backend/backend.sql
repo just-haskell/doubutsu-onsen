@@ -127,8 +127,8 @@ CREATE TABLE DOUBUTSU.item_stock
 -- * ミッション (温泉レベルアップ条件) - 属性
 CREATE TABLE DOUBUTSU.mission
   ( onsen_id SMALLINT NOT NULL
-  , onsen_level INTEGER NOT NULL
-  , mission_type INTEGER NOT NULL
+  , onsen_level SMALLINT NOT NULL
+  , mission_type SMALLINT NOT NULL
 
   , PRIMARY KEY (onsen_id, onsen_level)
   );
@@ -138,7 +138,7 @@ CREATE TABLE DOUBUTSU.mission
 -- mission_type == 0
 CREATE TABLE DOUBUTSU.mission_first_visited
   ( onsen_id SMALLINT NOT NULL
-  , onsen_level INTEGER NOT NULL
+  , onsen_level SMALLINT NOT NULL
   , doubutsu_id SMALLINT NOT NULL
 
   , PRIMARY KEY (onsen_id, onsen_level)
@@ -148,7 +148,7 @@ CREATE TABLE DOUBUTSU.mission_first_visited
 -- mission_type == 1
 CREATE TABLE DOUBUTSU.mission_visited
   ( onsen_id SMALLINT NOT NULL
-  , onsen_level INTEGER NOT NULL
+  , onsen_level SMALLINT NOT NULL
   , doubutsu_id SMALLINT NOT NULL
   , times INTEGER NOT NULL
 
@@ -159,7 +159,7 @@ CREATE TABLE DOUBUTSU.mission_visited
 -- mission_type == 2
 CREATE TABLE DOUBUTSU.mission_used_item
   ( onsen_id SMALLINT NOT NULL
-  , onsen_level INTEGER NOT NULL
+  , onsen_level SMALLINT NOT NULL
   , item_id INTEGER NOT NULL
   , times INTEGER NOT NULL
 
@@ -232,7 +232,7 @@ CREATE TABLE DOUBUTSU.event_growth
 --  event_data == id
 CREATE TABLE DOUBUTSU.event_mission
   ( event_log_id BIGINT NOT NULL
-  , onsen_level INTEGER NOT NULL
+  , onsen_level SMALLINT NOT NULL
   , mission_status INTEGER NOT NULL -- 遷移後状態
 
   , PRIMARY KEY (event_log_id)
@@ -258,7 +258,7 @@ CREATE TABLE DOUBUTSU.onsen_status
   ( game_id  INTEGER NOT NULL
   , onsen_id SMALLINT NOT NULL
   , updated_at TIMESTAMP NOT NULL
-  , onsen_level INTEGER NOT NULL
+  , onsen_level SMALLINT NOT NULL
   , mission_status INTEGER NOT NULL  -- 未開始: 0 , 実行中: 1 , 達成: 2
   , seed INTEGER NOT NULL
   , started_at TIMESTAMP NOT NULL
