@@ -93,7 +93,7 @@ CREATE TABLE DOUBUTSU.doubutsu_size
 
 -- * 種や木の実の種類 - 属性
 CREATE TABLE DOUBUTSU.item
-  ( id INTEGER NOT NULL
+  ( id SMALLINT NOT NULL
   , item_name TEXT NOT NULL
   , rarity INTEGER NOT NULL  -- 通常:0 , レア:1 , 激レア:2
 
@@ -101,7 +101,7 @@ CREATE TABLE DOUBUTSU.item
   );
 
 CREATE TABLE DOUBUTSU.item_seq
-  ( seq INTEGER NOT NULL
+  ( seq SMALLINT NOT NULL
   );
 
 INSERT INTO DOUBUTSU.item_seq VALUES (0);
@@ -109,7 +109,7 @@ INSERT INTO DOUBUTSU.item_seq VALUES (0);
 -- * 種や木の実の所持状態
 CREATE TABLE DOUBUTSU.item_stock
   ( game_id INTEGER NOT NULL
-  , item_id INTEGER NOT NULL
+  , item_id SMALLINT NOT NULL
   , amount INTEGER NOT NULL
 
   , PRIMARY KEY (game_id, item_id)
@@ -160,7 +160,7 @@ CREATE TABLE DOUBUTSU.mission_visited
 CREATE TABLE DOUBUTSU.mission_used_item
   ( onsen_id SMALLINT NOT NULL
   , onsen_level SMALLINT NOT NULL
-  , item_id INTEGER NOT NULL
+  , item_id SMALLINT NOT NULL
   , times INTEGER NOT NULL
 
   , PRIMARY KEY (onsen_id, onsen_level)
@@ -208,7 +208,7 @@ CREATE TABLE DOUBUTSU.event_action
 --  event_data == id
 CREATE TABLE DOUBUTSU.event_item
   ( event_log_id BIGINT NOT NULL
-  , item_id INTEGER NOT NULL
+  , item_id SMALLINT NOT NULL
   , got_reason_type INTEGER NOT NULL
   , got_reason_data INTEGER NOT NULL
 
@@ -221,7 +221,7 @@ CREATE TABLE DOUBUTSU.event_item
 CREATE TABLE DOUBUTSU.event_growth
   ( event_log_id BIGINT NOT NULL
   , local_slot_number INTEGER NOT NULL
-  , item_id INTEGER NOT NULL
+  , item_id SMALLINT NOT NULL
   , growth_level INTEGER NOT NULL -- 植えたときはレベル1
 
   , PRIMARY KEY (event_log_id)
@@ -285,7 +285,7 @@ CREATE TABLE DOUBUTSU.slot_status_custom
   ( game_id  INTEGER NOT NULL
   , onsen_id SMALLINT NOT NULL
   , local_slot_number INTEGER NOT NULL
-  , item_id INTEGER NOT NULL -- 何も植えられていない: -1
+  , item_id SMALLINT NOT NULL -- 何も植えられていない: -1
   , growth_level INTEGER NOT NULL
 
   , PRIMARY KEY (game_id, onsen_id, local_slot_number)

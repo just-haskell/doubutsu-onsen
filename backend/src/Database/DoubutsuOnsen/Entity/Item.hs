@@ -5,7 +5,7 @@ module Database.DoubutsuOnsen.Entity.Item where
 
 import GHC.Generics (Generic)
 import Prelude hiding (seq)
-import Data.Int (Int32)
+import Data.Int (Int16)
 
 import Database.Relational.Extra.Sequence
   (SequenceDerivable (..), unsafeSpecifySequence, primaryBindTriple, BindTableToSequence (..))
@@ -17,8 +17,8 @@ $(defineTable [] "DOUBUTSU" "item"
 $(defineTable [] "DOUBUTSU" "item_seq"
   [''Generic])
 
-instance SequenceDerivable ItemSeq Int32 where
+instance SequenceDerivable ItemSeq Int16 where
   derivedSequence = unsafeSpecifySequence seq seq'
 
-instance BindTableToSequence Item ItemSeq Int32 where
+instance BindTableToSequence Item ItemSeq Int16 where
   bindTriple = primaryBindTriple
