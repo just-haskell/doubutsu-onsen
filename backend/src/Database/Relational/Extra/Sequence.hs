@@ -1,5 +1,6 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE FunctionalDependencies #-}
+{-# LANGUAGE FlexibleContexts #-}
 
 -- |
 -- Module      : Database.Relational.Extra.Sequence
@@ -17,7 +18,8 @@ module Database.Relational.Extra.Sequence (
 
   SequenceDerivable (..),
 
-  SequenceFromTable (..), fromRelation,
+  bindTripleFromPi, primaryBindTriple,
+  BindTableToSequence (..), fromRelation,
 
   Number, unsafeSpecifyNumber, unsafeExtractNumber,
   ($$!), ($$),
@@ -30,7 +32,8 @@ import Prelude hiding (seq)
 import Database.Relational.Query
   (ShowConstantTermsSQL, updateTarget', Update, typedUpdate,
    Pi, TableDerivable, derivedTable, tableOf, Table, Relation,
-   (<-#), (.<=.), (!), wheres, unitPlaceHolder, value, )
+   (<-#), (.<=.), (!), wheres, unitPlaceHolder, value,
+   HasConstraintKey, constraintKey, projectionKey, Primary, Key, )
 import qualified Database.Relational.Query as Relational
 
 
@@ -49,22 +52,36 @@ relation :: TableDerivable s => Sequence s i -> Relation () s
 relation = Relational.table . table
 
 class TableDerivable s => SequenceDerivable s i | s -> i where
-  deriveSequence :: Sequence s i
+  derivedSequence :: Sequence s i
+
+bindTripleFromPi :: (TableDerivable r, SequenceDerivable s i)
+                 => Pi r i
+                 -> (Table r, Pi r i, Sequence s i)
+bindTripleFromPi pi' = (derivedTable, pi', derivedSequence)
+
+primaryBindTriple :: (TableDerivable r, SequenceDerivable s i, HasConstraintKey Primary r i)
+                  => (Table r, Pi r i, Sequence s i)
+primaryBindTriple = bindTripleFromPi $ projectionKey primaryKey
+  where
+    primaryKey :: HasConstraintKey Primary r i => Key Primary r i
+    primaryKey = constraintKey
 
 class (TableDerivable r, SequenceDerivable s i)
-      => SequenceFromTable r s i | r -> s  where
-  fromTable :: Table r -> Sequence s i
-  fromTable = const deriveSequence
+      => BindTableToSequence r s i | r -> s  where
+  bindTriple :: (Table r, Pi r i, Sequence s i)
 
-fromRelation :: SequenceFromTable r s i
+fromRelation :: BindTableToSequence r s i
              => Relation () r
              -> Sequence s i
-fromRelation = fromTable . tableOf
+fromRelation rel = s
+  where
+    (t, _, s) = bindTriple
+    _t = t `asTypeOf` tableOf rel
 
 newtype Number r i = Number i deriving (Eq, Ord, Show)
 
 -- | Unsafely specify sequence number.
-unsafeSpecifyNumber :: SequenceFromTable r s i => i -> Number r i
+unsafeSpecifyNumber :: BindTableToSequence r s i => i -> Number r i
 unsafeSpecifyNumber = Number
 
 unsafeExtractNumber :: Number r i -> i
@@ -75,7 +92,7 @@ unsafeExtractNumber (Number i) = i
 ($$!) = (. unsafeExtractNumber)
 
 -- | Unsafely apply sequence number. Only safe to build corresponding record type.
-($$) :: SequenceFromTable r s i => (i -> r) -> Number r i -> r
+($$) :: BindTableToSequence r s i => (i -> r) -> Number r i -> r
 ($$) = ($$!)
 
 {-

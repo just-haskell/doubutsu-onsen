@@ -8,7 +8,7 @@ import Prelude hiding (seq)
 import Data.Int (Int32)
 
 import Database.Relational.Extra.Sequence
-  (SequenceDerivable (..), unsafeSpecifySequence, SequenceFromTable (..))
+  (SequenceDerivable (..), unsafeSpecifySequence, primaryBindTriple, BindTableToSequence (..))
 import Database.DoubutsuOnsen.DataSource (defineTable)
 
 $(defineTable [] "DOUBUTSU" "onsen"
@@ -18,6 +18,7 @@ $(defineTable [] "DOUBUTSU" "onsen_seq"
   [''Generic])
 
 instance SequenceDerivable OnsenSeq Int32 where
-  deriveSequence = unsafeSpecifySequence seq seq'
+  derivedSequence = unsafeSpecifySequence seq seq'
 
-instance SequenceFromTable Onsen OnsenSeq Int32
+instance BindTableToSequence Onsen OnsenSeq Int32 where
+  bindTriple = primaryBindTriple
