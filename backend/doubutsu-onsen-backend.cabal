@@ -42,7 +42,7 @@ library
                        Database.DoubutsuOnsen.Entity.EventWhether
                        Database.DoubutsuOnsen.Entity.OnsenStatus
                        Database.DoubutsuOnsen.Entity.SlotStatusDoubutsu
-                       Database.DoubutsuOnsen.Entity.SlotStatusCustom
+                       Database.DoubutsuOnsen.Entity.SlotStatusItem
 
   other-extensions:
                        FlexibleContexts
@@ -50,9 +50,13 @@ library
                        FunctionalDependencies
 
   build-depends:
-                      -- GHC
+                       -- GHC
                          base <5
                        , template-haskell
+
+                       -- basics, for example platform
+                       , time
+                       , text
 
                        -- HDBC, HRR
                        , HDBC

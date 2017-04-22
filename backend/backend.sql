@@ -281,7 +281,7 @@ CREATE TABLE DOUBUTSU.slot_status_doubutsu
 
 -- ** カスタマイズ - 属性
 -- slot_type == 1
-CREATE TABLE DOUBUTSU.slot_status_custom
+CREATE TABLE DOUBUTSU.slot_status_item
   ( game_id  INTEGER NOT NULL
   , onsen_id SMALLINT NOT NULL
   , local_slot_number SMALLINT NOT NULL
