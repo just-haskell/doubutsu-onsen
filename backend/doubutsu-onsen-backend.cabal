@@ -25,7 +25,9 @@ library
 
                        Database.Relational.Extra.SequenceHDBC
                        Database.Relational.Extra.Sequence
+
                        Database.DoubutsuOnsen.DataSource
+                       Database.DoubutsuOnsen.InstanceHDBC
 
                        Database.DoubutsuOnsen.Entity.Gameuser
                        Database.DoubutsuOnsen.Entity.Game
@@ -47,6 +49,9 @@ library
                        Database.DoubutsuOnsen.Entity.OnsenStatus
                        Database.DoubutsuOnsen.Entity.SlotStatusDoubutsu
                        Database.DoubutsuOnsen.Entity.SlotStatusItem
+                       Database.DoubutsuOnsen.Entity.Index
+
+                       Database.DoubutsuOnsen.Model.Status
 
   other-extensions:
                        FlexibleContexts
