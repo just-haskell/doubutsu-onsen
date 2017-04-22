@@ -222,7 +222,7 @@ CREATE TABLE DOUBUTSU.event_growth
   ( event_log_id BIGINT NOT NULL
   , local_slot_number SMALLINT NOT NULL
   , item_id SMALLINT NOT NULL
-  , growth_level INTEGER NOT NULL -- 植えたときはレベル1
+  , growth_level SMALLINT NOT NULL -- レベルアップ後レベル、植えたときはレベル1
 
   , PRIMARY KEY (event_log_id)
   );
@@ -233,7 +233,7 @@ CREATE TABLE DOUBUTSU.event_growth
 CREATE TABLE DOUBUTSU.event_mission
   ( event_log_id BIGINT NOT NULL
   , onsen_level SMALLINT NOT NULL
-  , mission_status INTEGER NOT NULL -- 遷移後状態
+  , mission_status SMALLINT NOT NULL -- 遷移後状態
 
   , PRIMARY KEY (event_log_id)
   );
@@ -259,7 +259,7 @@ CREATE TABLE DOUBUTSU.onsen_status
   , onsen_id SMALLINT NOT NULL
   , updated_at TIMESTAMP NOT NULL
   , onsen_level SMALLINT NOT NULL
-  , mission_status INTEGER NOT NULL  -- 未開始: 0 , 実行中: 1 , 達成: 2
+  , mission_status SMALLINT NOT NULL  -- 未開始: 0 , 実行中: 1 , 達成: 2
   , seed INTEGER NOT NULL
   , started_at TIMESTAMP NOT NULL
 
@@ -286,7 +286,7 @@ CREATE TABLE DOUBUTSU.slot_status_custom
   , onsen_id SMALLINT NOT NULL
   , local_slot_number SMALLINT NOT NULL
   , item_id SMALLINT NOT NULL -- 何も植えられていない: -1
-  , growth_level INTEGER NOT NULL
+  , growth_level SMALLINT NOT NULL
 
   , PRIMARY KEY (game_id, onsen_id, local_slot_number)
   );
