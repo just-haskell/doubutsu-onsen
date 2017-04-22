@@ -274,7 +274,7 @@ CREATE TABLE DOUBUTSU.slot_status_doubutsu
   , onsen_id SMALLINT NOT NULL
   , local_slot_number SMALLINT NOT NULL
   , doubutsu_id SMALLINT -- 入っていない: NULL
-  -- , doubutsu_pause INTEGER NOT NULL
+  -- , doubutsu_pause SMALLINT NOT NULL
 
   , PRIMARY KEY (game_id, onsen_id, local_slot_number)
   );
