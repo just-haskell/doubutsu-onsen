@@ -19,6 +19,10 @@ library
   exposed-modules:
 
   other-modules:
+                       Data.DoubutsuOnsen.Doubutsu
+                       Data.DoubutsuOnsen.Item
+                       Data.DoubutsuOnsen.Onsen
+
                        Database.Relational.Extra.SequenceHDBC
                        Database.Relational.Extra.Sequence
                        Database.DoubutsuOnsen.DataSource
