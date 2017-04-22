@@ -68,7 +68,7 @@ CREATE TABLE DOUBUTSU.slot
 
 -- * 動物の種類(個体) - 属性
 CREATE TABLE DOUBUTSU.doubutsu
-  ( id INTEGER NOT NULL
+  ( id SMALLINT NOT NULL
   , doubutsu_name TEXT NOT NULL
   , released_at TIMESTAMP NOT NULL
 
@@ -76,14 +76,14 @@ CREATE TABLE DOUBUTSU.doubutsu
   );
 
 CREATE TABLE DOUBUTSU.doubutsu_seq
-  ( seq INTEGER NOT NULL
+  ( seq SMALLINT NOT NULL
   );
 
 INSERT INTO DOUBUTSU.doubutsu_seq VALUES (0);
 
 -- * 動物のスロット占有相対座標
 CREATE TABLE DOUBUTSU.doubutsu_size
-  ( doubutsu_id INTEGER NOT NULL
+  ( doubutsu_id SMALLINT NOT NULL
   , local_coord_number INTEGER NOT NULL
   , relative_x INTEGER NOT NULL
   , relative_y INTEGER NOT NULL
@@ -139,7 +139,7 @@ CREATE TABLE DOUBUTSU.mission
 CREATE TABLE DOUBUTSU.mission_first_visited
   ( onsen_id INTEGER NOT NULL
   , onsen_level INTEGER NOT NULL
-  , doubutsu_id INTEGER NOT NULL
+  , doubutsu_id SMALLINT NOT NULL
 
   , PRIMARY KEY (onsen_id, onsen_level)
   );
@@ -149,7 +149,7 @@ CREATE TABLE DOUBUTSU.mission_first_visited
 CREATE TABLE DOUBUTSU.mission_visited
   ( onsen_id INTEGER NOT NULL
   , onsen_level INTEGER NOT NULL
-  , doubutsu_id INTEGER NOT NULL
+  , doubutsu_id SMALLINT NOT NULL
   , times INTEGER NOT NULL
 
   , PRIMARY KEY (onsen_id, onsen_level)
@@ -198,7 +198,7 @@ CREATE TABLE DOUBUTSU.event_action
   ( event_log_id BIGINT NOT NULL
   , onsen_id INTEGER NOT NULL
   , local_slot_number INTEGER NOT NULL
-  , doubutsu_id INTEGER NOT NULL
+  , doubutsu_id SMALLINT NOT NULL
   , action_type INTEGER NOT NULL -- 来る: 0 , 帰る: 1 , or 癒しポーズID
 
   , PRIMARY KEY (event_log_id)
@@ -275,7 +275,7 @@ CREATE TABLE DOUBUTSU.slot_status_doubutsu
   ( game_id  INTEGER NOT NULL
   , onsen_id INTEGER NOT NULL
   , local_slot_number INTEGER NOT NULL
-  , doubutsu_id INTEGER NOT NULL -- 入っていない: -1
+  , doubutsu_id SMALLINT NOT NULL -- 入っていない: -1
   -- , doubutsu_pause INTEGER NOT NULL
 
   , PRIMARY KEY (game_id, onsen_id, local_slot_number)
