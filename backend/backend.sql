@@ -95,7 +95,7 @@ CREATE TABLE DOUBUTSU.doubutsu_size
 CREATE TABLE DOUBUTSU.item
   ( id SMALLINT NOT NULL
   , item_name TEXT NOT NULL
-  , rarity INTEGER NOT NULL  -- 通常:0 , レア:1 , 激レア:2
+  , rarity SMALLINT NOT NULL  -- 通常:0 , レア:1 , 激レア:2
 
   , PRIMARY KEY (id)
   );
@@ -110,7 +110,7 @@ INSERT INTO DOUBUTSU.item_seq VALUES (0);
 CREATE TABLE DOUBUTSU.item_stock
   ( game_id INTEGER NOT NULL
   , item_id SMALLINT NOT NULL
-  , amount INTEGER NOT NULL
+  , amount SMALLINT NOT NULL
 
   , PRIMARY KEY (game_id, item_id)
   );
@@ -150,7 +150,7 @@ CREATE TABLE DOUBUTSU.mission_visited
   ( onsen_id SMALLINT NOT NULL
   , onsen_level SMALLINT NOT NULL
   , doubutsu_id SMALLINT NOT NULL
-  , times INTEGER NOT NULL
+  , times SMALLINT NOT NULL
 
   , PRIMARY KEY (onsen_id, onsen_level)
   );
@@ -161,7 +161,7 @@ CREATE TABLE DOUBUTSU.mission_used_item
   ( onsen_id SMALLINT NOT NULL
   , onsen_level SMALLINT NOT NULL
   , item_id SMALLINT NOT NULL
-  , times INTEGER NOT NULL
+  , times SMALLINT NOT NULL
 
   , PRIMARY KEY (onsen_id, onsen_level)
   );
