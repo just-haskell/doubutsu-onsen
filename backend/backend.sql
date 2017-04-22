@@ -196,7 +196,6 @@ INSERT INTO DOUBUTSU.event_log_seq VALUES (0);
 --  event_data == id
 CREATE TABLE DOUBUTSU.event_action
   ( event_log_id BIGINT NOT NULL
-  , onsen_id SMALLINT NOT NULL
   , local_slot_number INTEGER NOT NULL
   , doubutsu_id SMALLINT NOT NULL
   , action_type INTEGER NOT NULL -- 来る: 0 , 帰る: 1 , or 癒しポーズID
@@ -221,7 +220,6 @@ CREATE TABLE DOUBUTSU.event_item
 --  event_data == id
 CREATE TABLE DOUBUTSU.event_growth
   ( event_log_id BIGINT NOT NULL
-  , onsen_id SMALLINT NOT NULL
   , local_slot_number INTEGER NOT NULL
   , item_id INTEGER NOT NULL
   , growth_level INTEGER NOT NULL -- 植えたときはレベル1
