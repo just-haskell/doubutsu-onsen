@@ -190,12 +190,6 @@ INSERT INTO DOUBUTSU.event_log_seq VALUES (0);
 -- * 各イベント詳細
 -- ** 温泉のはじまり
 --  event_type == 0
-CREATE TABLE DOUBUTSU.event_start
-  ( event_log_id BIGINT NOT NULL
-  , onsen_id INTEGER NOT NULL
-
-  , PRIMARY KEY (event_log_id)
-  );
 
 -- ** 動物の行動
 --  event_type == 1
