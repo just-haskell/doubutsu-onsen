@@ -1,8 +1,11 @@
+{-# LANGUAGE TemplateHaskell #-}
+
 module Database.DoubutsuOnsen.DataSource (
   connect,
   defineTable,
   ) where
 
+import Data.Text (Text)
 import Language.Haskell.TH (Q, Dec, TypeQ, Name)
 import Database.HDBC.PostgreSQL (connectPostgreSQL, Connection)
 import Database.HDBC.Schema.PostgreSQL (driverPostgreSQL)
@@ -31,4 +34,4 @@ defineTable :: [(String, TypeQ)]
 defineTable tmap =
   defineTableFromDB
     connectCompileTime
-    (driverPostgreSQL { typeMap = tmap })
+    (driverPostgreSQL { typeMap = tmap ++ [ ("text", [t| Text |]) ] })
