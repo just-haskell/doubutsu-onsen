@@ -82,7 +82,7 @@ CREATE TABLE DOUBUTSU.doubutsu_seq
 INSERT INTO DOUBUTSU.doubutsu_seq VALUES (0);
 
 -- * 動物のスロット占有相対座標
-CREATE TABLE DOUBUTSU.doubutsu_size
+CREATE TABLE DOUBUTSU.doubutsu_coord
   ( doubutsu_id SMALLINT NOT NULL
   , local_coord_number SMALLINT NOT NULL
   , relative_x SMALLINT NOT NULL

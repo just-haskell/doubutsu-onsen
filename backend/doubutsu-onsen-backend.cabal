@@ -28,7 +28,7 @@ library
                        Database.DoubutsuOnsen.Entity.Onsen
                        Database.DoubutsuOnsen.Entity.Slot
                        Database.DoubutsuOnsen.Entity.Doubutsu
-                       Database.DoubutsuOnsen.Entity.DoubutsuSize
+                       Database.DoubutsuOnsen.Entity.DoubutsuCoord
                        Database.DoubutsuOnsen.Entity.Item
                        Database.DoubutsuOnsen.Entity.ItemStock
                        Database.DoubutsuOnsen.Entity.Mission
