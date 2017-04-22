@@ -15,7 +15,7 @@ data Doubutsu a =
   { doubutsuId   :: Int16
   , doubutsuName :: Text
   , relasedAt    :: LocalTime
-  , coordList     :: a
+  , coordList    :: a
   } deriving (Eq, Generic)
 
 data Coord =
