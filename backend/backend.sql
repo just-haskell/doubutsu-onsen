@@ -61,7 +61,7 @@ CREATE TABLE DOUBUTSU.slot
   , local_slot_number INTEGER NOT NULL
   , locate_x INTEGER NOT NULL
   , locate_y INTEGER NOT NULL
-  , slot_type INTEGER NOT NULL  -- 動物が温泉に入る: 0, カスタマイズ: 1
+  , slot_type SMALLINT NOT NULL  -- 動物が温泉に入る: 0, カスタマイズ: 1
 
   , PRIMARY KEY (onsen_id, local_slot_number)
   );
@@ -175,7 +175,7 @@ CREATE TABLE DOUBUTSU.event_log
   ( id BIGINT NOT NULL
   , game_id INTEGER NOT NULL
   , onsen_id SMALLINT NOT NULL
-  , event_type INTEGER NOT NULL
+  , event_type SMALLINT NOT NULL
   , created_at TIMESTAMP NOT NULL
 
   , PRIMARY KEY (id)
@@ -198,7 +198,7 @@ CREATE TABLE DOUBUTSU.event_action
   ( event_log_id BIGINT NOT NULL
   , local_slot_number INTEGER NOT NULL
   , doubutsu_id SMALLINT NOT NULL
-  , action_type INTEGER NOT NULL -- 来る: 0 , 帰る: 1 , or 癒しポーズID
+  , action_type SMALLINT NOT NULL -- 来る: 0 , 帰る: 1 , or 癒しポーズID
 
   , PRIMARY KEY (event_log_id)
   );
@@ -209,7 +209,7 @@ CREATE TABLE DOUBUTSU.event_action
 CREATE TABLE DOUBUTSU.event_item
   ( event_log_id BIGINT NOT NULL
   , item_id SMALLINT NOT NULL
-  , got_reason_type INTEGER NOT NULL
+  , got_reason_type SMALLINT NOT NULL
   , got_reason_data INTEGER NOT NULL
 
   , PRIMARY KEY (event_log_id)
@@ -242,14 +242,14 @@ CREATE TABLE DOUBUTSU.event_mission
 --  event_type == 5
 CREATE TABLE DOUBUTSU.event_time
   ( event_log_id BIGINT NOT NULL
-  , time_type INTEGER NOT NULL -- 朝: 0 , 昼: 1 , 夕方: 2 , 夜: 3
+  , time_type SMALLINT NOT NULL -- 朝: 0 , 昼: 1 , 夕方: 2 , 夜: 3
   );
 
 -- ** 天気が変わる
 --  event_type == 6
 CREATE TABLE DOUBUTSU.event_whether
   ( event_log_id BIGINT NOT NULL
-  , whether INTEGER NOT NULL -- 天気の状態のID
+  , whether SMALLINT NOT NULL -- 天気の状態のID
   );
 
 
