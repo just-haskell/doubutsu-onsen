@@ -58,9 +58,9 @@ INSERT INTO DOUBUTSU.onsen_seq VALUES (0);
 -- * スロット (動物が温泉に入ったり、カスタマイズ用の木の種や実を植えたりする) - 属性
 CREATE TABLE DOUBUTSU.slot
   ( onsen_id SMALLINT NOT NULL
-  , local_slot_number INTEGER NOT NULL
-  , locate_x INTEGER NOT NULL
-  , locate_y INTEGER NOT NULL
+  , local_slot_number SMALLINT NOT NULL
+  , locate_x SMALLINT NOT NULL
+  , locate_y SMALLINT NOT NULL
   , slot_type SMALLINT NOT NULL  -- 動物が温泉に入る: 0, カスタマイズ: 1
 
   , PRIMARY KEY (onsen_id, local_slot_number)
@@ -84,9 +84,9 @@ INSERT INTO DOUBUTSU.doubutsu_seq VALUES (0);
 -- * 動物のスロット占有相対座標
 CREATE TABLE DOUBUTSU.doubutsu_size
   ( doubutsu_id SMALLINT NOT NULL
-  , local_coord_number INTEGER NOT NULL
-  , relative_x INTEGER NOT NULL
-  , relative_y INTEGER NOT NULL
+  , local_coord_number SMALLINT NOT NULL
+  , relative_x SMALLINT NOT NULL
+  , relative_y SMALLINT NOT NULL
 
   , PRIMARY KEY (doubutsu_id, local_coord_number)
   );
@@ -196,7 +196,7 @@ INSERT INTO DOUBUTSU.event_log_seq VALUES (0);
 --  event_data == id
 CREATE TABLE DOUBUTSU.event_action
   ( event_log_id BIGINT NOT NULL
-  , local_slot_number INTEGER NOT NULL
+  , local_slot_number SMALLINT NOT NULL
   , doubutsu_id SMALLINT NOT NULL
   , action_type SMALLINT NOT NULL -- 来る: 0 , 帰る: 1 , or 癒しポーズID
 
@@ -220,7 +220,7 @@ CREATE TABLE DOUBUTSU.event_item
 --  event_data == id
 CREATE TABLE DOUBUTSU.event_growth
   ( event_log_id BIGINT NOT NULL
-  , local_slot_number INTEGER NOT NULL
+  , local_slot_number SMALLINT NOT NULL
   , item_id SMALLINT NOT NULL
   , growth_level INTEGER NOT NULL -- 植えたときはレベル1
 
@@ -272,7 +272,7 @@ CREATE TABLE DOUBUTSU.onsen_status
 CREATE TABLE DOUBUTSU.slot_status_doubutsu
   ( game_id  INTEGER NOT NULL
   , onsen_id SMALLINT NOT NULL
-  , local_slot_number INTEGER NOT NULL
+  , local_slot_number SMALLINT NOT NULL
   , doubutsu_id SMALLINT NOT NULL -- 入っていない: -1
   -- , doubutsu_pause INTEGER NOT NULL
 
@@ -284,7 +284,7 @@ CREATE TABLE DOUBUTSU.slot_status_doubutsu
 CREATE TABLE DOUBUTSU.slot_status_custom
   ( game_id  INTEGER NOT NULL
   , onsen_id SMALLINT NOT NULL
-  , local_slot_number INTEGER NOT NULL
+  , local_slot_number SMALLINT NOT NULL
   , item_id SMALLINT NOT NULL -- 何も植えられていない: -1
   , growth_level INTEGER NOT NULL
 
