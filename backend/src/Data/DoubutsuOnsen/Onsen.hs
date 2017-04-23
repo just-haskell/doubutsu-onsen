@@ -9,9 +9,6 @@ import Data.Int (Int16, Int32)
 import Data.Time (LocalTime)
 import Data.Text (Text)
 
-import Data.DoubutsuOnsen.Doubutsu as Doubutsu
-import Data.DoubutsuOnsen.Item as Item
-
 
 data Onsen =
   Onsen
@@ -20,7 +17,7 @@ data Onsen =
   , releasedAt :: LocalTime
   } deriving (Eq, Generic)
 
-data Status =
+data Status a b =
   Status
   { onsen         :: Onsen
   , onsenLevel    :: Int16
@@ -28,6 +25,6 @@ data Status =
   , seed          :: Int32
   , updatedAt     :: LocalTime
   , startedAt     :: LocalTime
-  , doubutsuSlots :: [Doubutsu.SlotStatus [Doubutsu.Coord]]
-  , itemSlots     :: [Item.SlotStatus]
+  , doubutsuSlots :: a
+  , itemSlots     :: b
   } deriving (Eq, Generic)
