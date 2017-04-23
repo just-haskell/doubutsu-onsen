@@ -23,6 +23,8 @@ library
                        Data.DoubutsuOnsen.Item
                        Data.DoubutsuOnsen.Onsen
 
+                       Data.DoubutsuOnsen.InstancesAeson
+
                        Database.Relational.Extra.SequenceHDBC
                        Database.Relational.Extra.Sequence
 
