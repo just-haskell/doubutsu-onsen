@@ -4,6 +4,7 @@
 module System.DoubutsuOnsen.Mock () where
 
 import Control.Monad
+import Data.Monoid ((<>))
 import Data.Int (Int16, Int32)
 import Data.Time (LocalTime, parseTime)
 import Data.Time.Locale.Compat (defaultTimeLocale)
@@ -181,6 +182,7 @@ _printSlotStatusItem :: IO ()
 _printSlotStatusItem = withConnectionIO' connect $ \conn ->
   B8.putStrLn . encodePretty =<< runQuery conn (relationalQuery relSlotItem) (testGameId, testOnsenId)
 
-_printOnsenStatusAll :: IO ()
-_printOnsenStatusAll =
-  B8.putStrLn . encodePretty =<< queryOnsenStatus testGameId testOnsenId
+_writeOnsenStatusAll :: IO ()
+_writeOnsenStatusAll =
+  B8.writeFile "status-example.json" . (<> "\n") . encodePretty
+  =<< queryOnsenStatus testGameId testOnsenId

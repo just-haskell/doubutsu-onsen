@@ -1,0 +1,73 @@
+{
+    "doubutsuSlots": [
+        {
+            "locateX": 1,
+            "locateY": 1,
+            "doubutsu": {
+                "doubutsuName": "さる",
+                "coordList": [
+                    {
+                        "relativeX": 0,
+                        "relativeY": 0
+                    }
+                ],
+                "doubutsuId": 1
+            }
+        },
+        {
+            "locateX": 2,
+            "locateY": 2,
+            "doubutsu": {
+                "doubutsuName": "くま",
+                "coordList": [
+                    {
+                        "relativeX": 0,
+                        "relativeY": 0
+                    },
+                    {
+                        "relativeX": 1,
+                        "relativeY": 0
+                    },
+                    {
+                        "relativeX": 0,
+                        "relativeY": 1
+                    },
+                    {
+                        "relativeX": 1,
+                        "relativeY": 1
+                    }
+                ],
+                "doubutsuId": 2
+            }
+        }
+    ],
+    "seed": 37,
+    "itemSlots": [
+        {
+            "locateX": 0,
+            "locateY": 1,
+            "growthLevel": 1,
+            "item": {
+                "itemName": "くるみ",
+                "itemId": 2,
+                "rarity": 1
+            }
+        },
+        {
+            "locateX": 2,
+            "locateY": 0,
+            "growthLevel": 2,
+            "item": {
+                "itemName": "ごま",
+                "itemId": 1,
+                "rarity": 0
+            }
+        }
+    ],
+    "onsen": {
+        "onsenName": "はすけ湯",
+        "onsenId": 1
+    },
+    "onsenLevel": 1,
+    "missionStatus": 0
+}
