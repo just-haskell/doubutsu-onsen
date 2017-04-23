@@ -263,10 +263,10 @@ CREATE TABLE DOUBUTSU.event_whether
 CREATE TABLE DOUBUTSU.onsen_status
   ( game_id  INTEGER NOT NULL
   , onsen_id SMALLINT NOT NULL
-  , updated_at TIMESTAMP NOT NULL
   , onsen_level SMALLINT NOT NULL
   , mission_status SMALLINT NOT NULL  -- 未開始: 0 , 実行中: 1 , 達成: 2
   , seed INTEGER NOT NULL
+  , updated_at TIMESTAMP NOT NULL
   , started_at TIMESTAMP NOT NULL
 
   , PRIMARY KEY (game_id , onsen_id)

@@ -23,10 +23,10 @@ data Onsen =
 data Status =
   Status
   { onsen         :: Onsen
-  , updatedAt     :: LocalTime
   , onsenLevel    :: Int16
   , missionStatus :: Int16
   , seed          :: Int32
+  , updatedAt     :: LocalTime
   , startedAt     :: LocalTime
   , doubutsuSlots :: [Doubutsu.SlotStatus [Doubutsu.Coord]]
   , itemSlots     :: [Item.SlotStatus]
