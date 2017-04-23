@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DeriveGeneric, DeriveFunctor #-}
 
 module Data.DoubutsuOnsen.Doubutsu (
   Doubutsu (..), Coord (..), SlotStatus (..),
@@ -16,7 +16,7 @@ data Doubutsu a =
   , doubutsuName :: Text
   --- , relasedAt    :: LocalTime
   , coordList    :: a
-  } deriving (Eq, Show, Generic)
+  } deriving (Eq, Show, Generic, Functor)
 
 data Coord =
   Coord
@@ -29,4 +29,4 @@ data SlotStatus a =
   { locateX  :: Int16
   , locateY  :: Int16
   , doubutsu :: Doubutsu a
-  } deriving (Eq, Show, Generic)
+  } deriving (Eq, Show, Generic, Functor)
