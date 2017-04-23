@@ -6,7 +6,7 @@ module Data.DoubutsuOnsen.Doubutsu (
 
 import GHC.Generics (Generic)
 import Data.Int (Int16)
-import Data.Time (LocalTime)
+-- import Data.Time (LocalTime)
 import Data.Text (Text)
 
 
@@ -14,7 +14,7 @@ data Doubutsu a =
   Doubutsu
   { doubutsuId   :: Int16
   , doubutsuName :: Text
-  , relasedAt    :: LocalTime
+  --- , relasedAt    :: LocalTime
   , coordList    :: a
   } deriving (Eq, Show, Generic)
 

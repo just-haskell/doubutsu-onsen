@@ -12,7 +12,6 @@ module Database.DoubutsuOnsen.Model.Status (
 
 import Data.Int (Int16, Int32)
 import Data.Text (Text)
-import Data.Time (LocalTime)
 import Database.Relational.Query
 
 import Data.DoubutsuOnsen.Onsen (Onsen (Onsen))
@@ -43,7 +42,7 @@ import qualified Database.DoubutsuOnsen.Entity.Index as Index
 
 instance ShowConstantTermsSQL ()
 
-instance ProductConstructor (Int16 -> Text -> LocalTime -> a -> Doubutsu a) where
+instance ProductConstructor (Int16 -> Text -> a -> Doubutsu a) where
   productConstructor = Doubutsu
 
 instance ProductConstructor (Int16 -> Int16 -> Doubutsu a -> Doubutsu.SlotStatus a) where
@@ -58,7 +57,7 @@ instance ProductConstructor (Int16 -> Text -> Int16 -> Item) where
 instance ProductConstructor (Int16 -> Int16 -> Item -> Int16 -> Item.SlotStatus) where
   productConstructor = Item.SlotStatus
 
-instance ProductConstructor (Int16 -> Text -> LocalTime -> Onsen) where
+instance ProductConstructor (Int16 -> Text -> Onsen) where
   productConstructor = Onsen
 
 instance ProductConstructor
@@ -66,8 +65,6 @@ instance ProductConstructor
           -> Int16
           -> Int16
           -> Int32
-          -> LocalTime
-          -> LocalTime
           -> a
           -> b
           -> Onsen.Status a b) where
@@ -92,7 +89,7 @@ relSlotDoubutsu = relation' $ do
   orderBy (dc ! DoubutsuCoordE.localCoordNumber') Asc
 
   let coordM = Doubutsu.Coord |$| dc ! DoubutsuCoordE.relativeX' |*| dc ! DoubutsuCoordE.relativeY'
-      doubutsuM = Doubutsu |$| d ! DoubutsuE.id' |*| d ! DoubutsuE.doubutsuName' |*| d ! DoubutsuE.releasedAt' |*| coordM
+      doubutsuM = Doubutsu |$| d ! DoubutsuE.id' |*| d ! DoubutsuE.doubutsuName' |*| coordM
       st = Doubutsu.SlotStatus |$| s ! SlotE.locateX' |*| s ! SlotE.locateY' |*| doubutsuM
 
   return (gph >< oph, st)
@@ -125,14 +122,12 @@ relOnsenStatus = relation' $ do
   (gph, ()) <- placeholder $ \ph -> wheres $ os ! OnsenStatusE.gameId' .=. ph
   (oph, ()) <- placeholder $ \ph -> wheres $ os ! OnsenStatusE.onsenId' .=. ph
 
-  let onsenM = Onsen |$| o ! OnsenE.id' |*| o ! OnsenE.onsenName' |*| o ! OnsenE.releasedAt'
+  let onsenM = Onsen |$| o ! OnsenE.id' |*| o ! OnsenE.onsenName'
       st = Onsen.Status
            |$| onsenM
            |*| os ! OnsenStatusE.onsenLevel'
            |*| os ! OnsenStatusE.missionStatus'
            |*| os ! OnsenStatusE.seed'
-           |*| os ! OnsenStatusE.updatedAt'
-           |*| os ! OnsenStatusE.startedAt'
            |*| value ()
            |*| value ()
 
