@@ -1,13 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE FlexibleContexts #-}
 
-module System.DoubutsuOnsen.Mock (
-  initializeMockEnv,
-
-  queryOnsenStatus,
-  querySlotStatusDoubutsu,
-  querySlotStatusItem,
-  ) where
+module System.DoubutsuOnsen.Mock () where
 
 import Control.Monad
 import Data.Int (Int16, Int32)
@@ -158,8 +152,8 @@ testSlotStatusItemList =
 -- itemSeqPool :: IO [Sequence.Number Item Int16]
 -- itemSeqPool = autoPool connect 1 item
 
-initializeMockEnv :: IO ()
-initializeMockEnv = withConnectionIO' connect $ \conn -> do
+_initializeMockEnv :: IO ()
+_initializeMockEnv = withConnectionIO' connect $ \conn -> do
   void $ runInsert conn insertOnsen testOnsen
   void $ runInsert conn insertOnsenStatus testOnsenStatus
   let mapInsert i = mapM_ (runInsert conn i)
@@ -171,14 +165,14 @@ initializeMockEnv = withConnectionIO' connect $ \conn -> do
   mapInsert  insertSlotStatusItem      testSlotStatusItemList
   commit conn
 
-queryOnsenStatus :: IO ()
-queryOnsenStatus = withConnectionIO' connect $ \conn ->
+_printOnsenStatus :: IO ()
+_printOnsenStatus = withConnectionIO' connect $ \conn ->
   runQuery conn (relationalQuery relOnsenStatus) (testGameId, testOnsenId) >>= mapM_ print
 
-querySlotStatusDoubutsu :: IO ()
-querySlotStatusDoubutsu = withConnectionIO' connect $ \conn ->
+_printSlotStatusDoubutsu :: IO ()
+_printSlotStatusDoubutsu = withConnectionIO' connect $ \conn ->
   runQuery conn (relationalQuery relSlotDoubutsu) (testGameId, testOnsenId) >>= mapM_ print
 
-querySlotStatusItem :: IO ()
-querySlotStatusItem = withConnectionIO' connect $ \conn ->
+_printSlotStatusItem :: IO ()
+_printSlotStatusItem = withConnectionIO' connect $ \conn ->
   runQuery conn (relationalQuery relSlotItem) (testGameId, testOnsenId) >>= mapM_ print
