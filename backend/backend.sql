@@ -279,7 +279,7 @@ CREATE TABLE DOUBUTSU.slot_status_doubutsu
   ( game_id  INTEGER NOT NULL
   , onsen_id SMALLINT NOT NULL
   , local_slot_number SMALLINT NOT NULL
-  , doubutsu_id SMALLINT -- 入っていない: NULL
+  , doubutsu_id SMALLINT -- 入っていない: NULL  -- 入っていないときにレコードを消すことにすると DELETE 文を使うことになる
   -- , doubutsu_pause SMALLINT NOT NULL
 
   , PRIMARY KEY (game_id, onsen_id, local_slot_number)
@@ -291,7 +291,7 @@ CREATE TABLE DOUBUTSU.slot_status_item
   ( game_id  INTEGER NOT NULL
   , onsen_id SMALLINT NOT NULL
   , local_slot_number SMALLINT NOT NULL
-  , item_id SMALLINT -- 何も植えられていない: NULL
+  , item_id SMALLINT -- 何も植えられていない: NULL  -- 何も植えられていないときにレコードを消すことにすると DELETE 文を使うことになる
   , growth_level SMALLINT NOT NULL
 
   , PRIMARY KEY (game_id, onsen_id, local_slot_number)
