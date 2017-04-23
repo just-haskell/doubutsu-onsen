@@ -13,7 +13,7 @@ data Item =
   Item
   { itemId   :: Int16
   , itemName :: Text
-  , rerity   :: Int16
+  , rarity   :: Int16
   } deriving (Eq, Generic)
 
 data SlotStatus =
