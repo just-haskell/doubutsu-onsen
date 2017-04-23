@@ -68,6 +68,8 @@ CREATE TABLE DOUBUTSU.slot
   , PRIMARY KEY (onsen_id, local_slot_number)
   );
 
+CREATE UNIQUE INDEX slot_xy ON DOUBUTSU.slot (onsen_id, locate_x, locate_y);
+
 -- * 動物の種類(個体) - 属性
 CREATE TABLE DOUBUTSU.doubutsu
   ( id SMALLINT NOT NULL
@@ -92,6 +94,8 @@ CREATE TABLE DOUBUTSU.doubutsu_coord
 
   , PRIMARY KEY (doubutsu_id, local_coord_number)
   );
+
+CREATE UNIQUE INDEX doubutsu_coord_xy ON DOUBUTSU.doubutsu_coord (doubutsu_id, relative_x, relative_y);
 
 -- * 種や木の実の種類 - 属性
 CREATE TABLE DOUBUTSU.item
