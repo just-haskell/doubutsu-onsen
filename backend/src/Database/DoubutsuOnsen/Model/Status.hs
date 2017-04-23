@@ -7,6 +7,7 @@
 module Database.DoubutsuOnsen.Model.Status (
   relSlotDoubutsu,
   relSlotItem,
+  relOnsenStatus,
   ) where
 
 import Data.Int (Int16, Int32)
@@ -14,20 +15,17 @@ import Data.Text (Text)
 import Data.Time (LocalTime)
 import Database.Relational.Query
 
--- import Data.DoubutsuOnsen.Onsen
+import Data.DoubutsuOnsen.Onsen (Onsen (Onsen))
+import qualified Data.DoubutsuOnsen.Onsen as Onsen
 import Data.DoubutsuOnsen.Doubutsu (Doubutsu (Doubutsu))
 import qualified Data.DoubutsuOnsen.Doubutsu as Doubutsu
 import Data.DoubutsuOnsen.Item (Item (Item))
 import qualified Data.DoubutsuOnsen.Item as Item
 
--- import Database.DoubutsuOnsen.Entity.Gameuser (gameuser)
--- import qualified Database.DoubutsuOnsen.Entity.Gameuser as UserE
 import Database.DoubutsuOnsen.Entity.Onsen (onsen)
 import qualified Database.DoubutsuOnsen.Entity.Onsen as OnsenE
 import Database.DoubutsuOnsen.Entity.OnsenStatus (onsenStatus)
 import qualified Database.DoubutsuOnsen.Entity.OnsenStatus as OnsenStatusE
-import Database.DoubutsuOnsen.Entity.Game (game)
-import qualified Database.DoubutsuOnsen.Entity.Game as GameE
 import Database.DoubutsuOnsen.Entity.Slot (slot)
 import qualified Database.DoubutsuOnsen.Entity.Slot as SlotE
 import Database.DoubutsuOnsen.Entity.Doubutsu (doubutsu)
@@ -59,6 +57,21 @@ instance ProductConstructor (Int16 -> Text -> Int16 -> Item) where
 
 instance ProductConstructor (Int16 -> Int16 -> Item -> Int16 -> Item.SlotStatus) where
   productConstructor = Item.SlotStatus
+
+instance ProductConstructor (Int16 -> Text -> LocalTime -> Onsen) where
+  productConstructor = Onsen
+
+instance ProductConstructor
+         (Onsen
+          -> Int16
+          -> Int16
+          -> Int32
+          -> LocalTime
+          -> LocalTime
+          -> a
+          -> b
+          -> Onsen.Status a b) where
+  productConstructor = Onsen.Status
 
 
 relSlotDoubutsu :: Relation (Int32, Int16) (Doubutsu.SlotStatus Doubutsu.Coord)
@@ -100,5 +113,27 @@ relSlotItem = relation' $ do
 
   let itemM = Item |$| i ! ItemE.id' |*| i ! ItemE.itemName' |*| i ! ItemE.rarity'
       st = Item.SlotStatus |$| s ! SlotE.locateX' |*| s ! SlotE.locateY' |*| itemM |*| ss ! SlotStatusItemE.growthLevel'
+
+  return (gph >< oph, st)
+
+relOnsenStatus :: Relation (Int32, Int16) (Onsen.Status () ())
+relOnsenStatus = relation' $ do
+  o  <- query onsen
+  os <- query onsenStatus
+  on $ o ! OnsenE.id' .=. os ! OnsenStatusE.onsenId'
+
+  (gph, ()) <- placeholder $ \ph -> wheres $ os ! OnsenStatusE.gameId' .=. ph
+  (oph, ()) <- placeholder $ \ph -> wheres $ os ! OnsenStatusE.onsenId' .=. ph
+
+  let onsenM = Onsen |$| o ! OnsenE.id' |*| o ! OnsenE.onsenName' |*| o ! OnsenE.releasedAt'
+      st = Onsen.Status
+           |$| onsenM
+           |*| os ! OnsenStatusE.onsenLevel'
+           |*| os ! OnsenStatusE.missionStatus'
+           |*| os ! OnsenStatusE.seed'
+           |*| os ! OnsenStatusE.updatedAt'
+           |*| os ! OnsenStatusE.startedAt'
+           |*| value ()
+           |*| value ()
 
   return (gph >< oph, st)
