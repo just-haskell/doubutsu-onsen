@@ -15,8 +15,8 @@ import Data.DoubutsuOnsen.Item as Item
 
 data Onsen =
   Onsen
-  { onsenId :: Int16
-  , onsenName :: Text
+  { onsenId    :: Int16
+  , onsenName  :: Text
   , releasedAt :: LocalTime
   } deriving (Eq, Generic)
 
@@ -26,7 +26,7 @@ data Status =
   , updatedAt     :: LocalTime
   , onsenLevel    :: Int16
   , missionStatus :: Int16
-  , seed           :: Int32
+  , seed          :: Int32
   , startedAt     :: LocalTime
   , doubutsuSlots :: [Doubutsu.SlotStatus [Doubutsu.Coord]]
   , itemSlots     :: [Item.SlotStatus]
