@@ -55,6 +55,7 @@ library
 
                        Database.DoubutsuOnsen.Model.Status
 
+                       System.DoubutsuOnsen.Query
                        System.DoubutsuOnsen.Mock
 
   other-extensions:
