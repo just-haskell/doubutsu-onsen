@@ -14,7 +14,7 @@ data Item =
   { itemId   :: Int16
   , itemName :: Text
   , rarity   :: Int16
-  } deriving (Eq, Generic)
+  } deriving (Eq, Show, Generic)
 
 data SlotStatus =
   SlotStatus
@@ -22,4 +22,4 @@ data SlotStatus =
   , locateY :: Int16
   , item :: Item
   , growthLevel :: Int16
-  } deriving (Eq, Generic)
+  } deriving (Eq, Show, Generic)

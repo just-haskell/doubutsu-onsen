@@ -15,7 +15,7 @@ data Onsen =
   { onsenId    :: Int16
   , onsenName  :: Text
   , releasedAt :: LocalTime
-  } deriving (Eq, Generic)
+  } deriving (Eq, Show, Generic)
 
 data Status a b =
   Status
@@ -27,4 +27,4 @@ data Status a b =
   , startedAt     :: LocalTime
   , doubutsuSlots :: a
   , itemSlots     :: b
-  } deriving (Eq, Generic)
+  } deriving (Eq, Show, Generic)

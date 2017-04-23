@@ -16,17 +16,17 @@ data Doubutsu a =
   , doubutsuName :: Text
   , relasedAt    :: LocalTime
   , coordList    :: a
-  } deriving (Eq, Generic)
+  } deriving (Eq, Show, Generic)
 
 data Coord =
   Coord
   { relativeX :: Int16
   , relativeY :: Int16
-  } deriving (Eq, Generic)
+  } deriving (Eq, Show, Generic)
 
 data SlotStatus a =
   SlotStatus
   { locateX  :: Int16
   , locateY  :: Int16
   , doubutsu :: Doubutsu a
-  } deriving (Eq, Generic)
+  } deriving (Eq, Show, Generic)
