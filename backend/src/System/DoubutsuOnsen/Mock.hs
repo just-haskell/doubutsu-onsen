@@ -7,6 +7,8 @@ import Control.Monad
 import Data.Int (Int16, Int32)
 import Data.Time (LocalTime, parseTime)
 import Data.Time.Locale.Compat (defaultTimeLocale)
+import qualified Data.ByteString.Lazy.Char8 as B8
+import Data.Aeson.Encode.Pretty (encodePretty)
 -- import Database.Record (ToSql)
 import Database.Relational.Query (relationalQuery)
 -- import Database.HDBC (SqlValue)
@@ -18,6 +20,7 @@ import Database.HDBC.Record (runInsert, runQuery)
 -- import Database.Relational.Extra.SequenceHDBC (autoPool)
 -- import qualified Database.Relational.Extra.Sequence as Sequence
 
+import Data.DoubutsuOnsen.InstancesAeson ()
 import Database.DoubutsuOnsen.DataSource (connect)
 import Database.DoubutsuOnsen.Entity.Onsen (Onsen (Onsen), insertOnsen)
 import qualified Database.DoubutsuOnsen.Entity.Onsen as Onsen
@@ -34,6 +37,7 @@ import Database.DoubutsuOnsen.Entity.SlotStatusItem
 import Database.DoubutsuOnsen.InstanceHDBC ()
 import Database.DoubutsuOnsen.Model.Status
   (relSlotDoubutsu, relSlotItem, relOnsenStatus, )
+import System.DoubutsuOnsen.Query (queryOnsenStatus)
 
 
 testGameId :: Int32
@@ -167,12 +171,16 @@ _initializeMockEnv = withConnectionIO' connect $ \conn -> do
 
 _printOnsenStatus :: IO ()
 _printOnsenStatus = withConnectionIO' connect $ \conn ->
-  runQuery conn (relationalQuery relOnsenStatus) (testGameId, testOnsenId) >>= mapM_ print
+  B8.putStrLn . encodePretty =<< runQuery conn (relationalQuery relOnsenStatus) (testGameId, testOnsenId)
 
 _printSlotStatusDoubutsu :: IO ()
 _printSlotStatusDoubutsu = withConnectionIO' connect $ \conn ->
-  runQuery conn (relationalQuery relSlotDoubutsu) (testGameId, testOnsenId) >>= mapM_ print
+  B8.putStrLn . encodePretty =<< runQuery conn (relationalQuery relSlotDoubutsu) (testGameId, testOnsenId)
 
 _printSlotStatusItem :: IO ()
 _printSlotStatusItem = withConnectionIO' connect $ \conn ->
-  runQuery conn (relationalQuery relSlotItem) (testGameId, testOnsenId) >>= mapM_ print
+  B8.putStrLn . encodePretty =<< runQuery conn (relationalQuery relSlotItem) (testGameId, testOnsenId)
+
+_printOnsenStatusAll :: IO ()
+_printOnsenStatusAll =
+  B8.putStrLn . encodePretty =<< queryOnsenStatus testGameId testOnsenId

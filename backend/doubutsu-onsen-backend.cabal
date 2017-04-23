@@ -67,6 +67,7 @@ library
                        -- GHC
                          base <5
                        , template-haskell
+                       , bytestring
 
                        -- basics, for example platform
                        , time
@@ -74,6 +75,7 @@ library
 
                        --
                        , aeson
+                       , aeson-pretty
 
                        -- compat
                        , time-locale-compat
