@@ -28,6 +28,6 @@ data Status =
   , missionStatus :: Int16
   , seed           :: Int32
   , startedAt     :: LocalTime
-  , doubutsuSlots :: Doubutsu.SlotStatus [Doubutsu.Coord]
-  , itemSlots     :: Item.SlotStatus
+  , doubutsuSlots :: [Doubutsu.SlotStatus [Doubutsu.Coord]]
+  , itemSlots     :: [Item.SlotStatus]
   } deriving (Eq, Generic)
