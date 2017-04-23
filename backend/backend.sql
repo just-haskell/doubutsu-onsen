@@ -20,6 +20,8 @@ CREATE TABLE DOUBUTSU.gameuser -- user が SQL の keyword らしいので避け
   , PRIMARY KEY (id)
   );
 
+CREATE UNIQUE INDEX gameuser_email ON DOUBUTSU.gameuser (email);
+
 CREATE TABLE DOUBUTSU.gameuser_seq
   ( seq INTEGER NOT NULL
   );
